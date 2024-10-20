@@ -1,0 +1,1009 @@
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/RvJ0qewm", true))()
+local main = library:CreateWindow("Sirius🌠")
+local Workspace = game:GetService("Workspace")
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local Plr = Players.LocalPlayer
+local Clipon = false
+local stop = false
+
+local Section = main:Section("Default")
+
+local bb=game:service'VirtualUser'
+game:service'Players'.LocalPlayer.Idled:connect(function()
+	bb:CaptureController()bb:ClickButton2(Vector2.new())
+end)
+
+local Noclip = main:Toggle("Noclip", {flag="NoclipON"})
+local InfJumps = main:Toggle("InfJumps", {flag="InfJumpsOn"})
+spawn(function()
+	while wait() do
+		if main.flags.NoclipON and stop == false then
+			Clipon = true
+			if stop == false then
+
+				if Clipon ~= false then
+					for a, b in pairs(Workspace:GetChildren()) do
+						if b.Name == Plr.Name then
+							for i, v in pairs(Workspace[Plr.Name]:GetChildren()) do
+								if v:IsA("BasePart") then
+									v.CanCollide = false
+								end end end end
+				else
+					for i, v in pairs(Workspace[Plr.Name]:GetChildren()) do
+						if v:IsA("BasePart") then
+							v.CanCollide = false
+						end
+					end
+				end
+
+			else
+				Clipon = true
+			end
+		else
+			Clipon = false
+			stop = false
+		end
+	end
+end) 
+
+local Human = main:Section("Humanoid")
+
+local hipheight = main:Slider("Hip Height", {
+	min=2;
+	max=102;
+	flag="height"}, function(v)
+	game.Players.LocalPlayer.Character.Humanoid.HipHeight = v
+end)
+
+local speed = main:Slider("Walk Speed", {
+	min=16;
+	max=900;
+	flag="speed"}, function(g)
+	while game:GetService("RunService").RenderStepped:wait() do
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = g
+	end
+end)
+
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if not main.flags.InfJumpsOn then return end
+	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")       
+end)
+if game.PlaceId == 10697845123 then
+	local ScreenGui = Instance.new("ScreenGui")
+	local TextBox = Instance.new("TextBox")
+
+	-- Properties
+
+	ScreenGui.Parent = game.CoreGui
+
+	TextBox.Parent = ScreenGui
+	TextBox.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+	TextBox.Position = UDim2.new(0, 1760, 1, -50)
+	TextBox.Size = UDim2.new(0, 150, 0, 25)
+	TextBox.Font = Enum.Font.SourceSans
+	TextBox.Text = "Insert Player Name"
+	TextBox.TextColor3 = Color3.new(1, 1, 1)
+	TextBox.TextScaled = true
+	TextBox.TextSize = 14
+	TextBox.TextWrapped = true
+
+
+	local SwordSilly = main:Section("Silly Sword Game")
+
+	local Teleport = main:Toggle("TPplayer", {flag="TPOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.TPOn then
+				local ooooooof = TextBox.Text
+				local you = game.Players.LocalPlayer.Character
+				local other = game.Workspace:FindFirstChild(ooooooof)
+				if game.Workspace:FindFirstChild(ooooooof) and you:FindFirstChild("HumanoidRootPart") and other:FindFirstChild("HumanoidRootPart") then
+					you.HumanoidRootPart.CFrame = other.HumanoidRootPart.CFrame * CFrame.new(0,0,4)
+				end
+			end
+		end
+	end) 
+elseif game.PlaceId == 142823291 then
+	local GmName = main:Section("Murder Mystery 2")
+	local Stopped = false
+	local AutoFarm = main:Toggle("AutoFarm", {flag="AutoFarmOn"})
+	spawn(function()
+		while wait(1) do
+			if main.flags.AutoFarmOn then
+				if Stopped == false then
+					Stopped = true
+					if game.Workspace:FindFirstChild("Barn") then
+						if game.Workspace.Barn:FindFirstChild("CoinContainer") then
+							for i,v in pairs(game.Workspace.Barn.CoinContainer:GetChildren()) do 
+								if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+									if game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
+										if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
+											if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
+												if game.Workspace.Barn:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													wait(1.5)
+													local Pos = game.Workspace.Barn.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+													local NewPart = Instance.new("Part", game.Workspace.Barn)
+													NewPart.Size = Vector3.new(2048, 69.039, 2048)
+													NewPart.Anchored = true
+													NewPart.Position = Pos
+													NewPart.Name = "NewPart"
+												end
+												if #game.Workspace.Barn:GetChildren() >= 2 then
+													for i,v in pairs(game.Workspace.Barn:GetChildren()) do
+														if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+															v:Destroy()
+														end
+													end
+												end
+												if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+													wait(0.7)
+													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+													end
+													wait(2.3)		
+												end
+											end
+										end 
+									else
+										if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
+											if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
+												if game.Workspace.Barn:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													wait(1.5)
+													local Pos = game.Workspace.Barn.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+													local NewPart = Instance.new("Part", game.Workspace.Barn)
+													NewPart.Size = Vector3.new(2048, 69.039, 2048)
+													NewPart.Anchored = true
+													NewPart.Position = Pos
+													NewPart.Name = "NewPart"
+												end
+												if #game.Workspace.Barn:GetChildren() >= 2 then
+													for i,v in pairs(game.Workspace.Barn:GetChildren()) do
+														if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+															v:Destroy()
+														end
+													end
+												end
+												if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+													wait(0.7)
+													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+													end
+													wait(2.3)		
+												end
+											end
+										end
+									end 
+								end
+							end
+						end
+					elseif game.Workspace:FindFirstChild("Christmas") then
+						if game.Workspace.Christmas:FindFirstChild("CoinContainer") then
+							for i,v in pairs(game.Workspace.Christmas.CoinContainer:GetChildren()) do
+								if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+									if game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Lobby") then
+										if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Lobby.Dock:FindFirstChild("CoinBag") then
+											if game.Players.LocalPlayer.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Full.Visible == false then
+												if game.Workspace.Christmas:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													wait(1.5)
+													local Pos = game.Workspace.Christmas.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+													local NewPart = Instance.new("Part", game.Workspace.Christmas)
+													NewPart.Anchored = true
+													NewPart.Size = Vector3.new(2048, 69.039, 2048)
+													NewPart.Position = Pos
+													NewPart.Name = "NewPart"
+												end
+												if #game.Workspace.Christmas:GetChildren() >= 2 then
+													for i,v in pairs(game.Workspace.Christmas:GetChildren()) do
+														if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+															v:Destroy()
+														end
+													end
+												end
+												if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+													wait(0.7)
+													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+													end
+													wait(2.3)	
+												end
+											end
+										end
+									else
+										if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
+											if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
+												if game.Workspace.Christmas:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													wait(1.5)
+													local Pos = game.Workspace.Christmas.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+													local NewPart = Instance.new("Part", game.Workspace.Christmas)
+													NewPart.Anchored = true
+													NewPart.Size = Vector3.new(2048, 69.039, 2048)
+													NewPart.Position = Pos
+													NewPart.Name = "NewPart"
+												end
+												if #game.Workspace.Christmas:GetChildren() >= 2 then
+													for i,v in pairs(game.Workspace.Christmas:GetChildren()) do
+														if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+															v:Destroy()
+														end
+													end
+												end
+												if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+													wait(0.7)
+													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+													end
+													wait(2.3)	
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+					Stopped = false
+				end
+			end
+		end
+	end)
+	local ESP = main:Toggle("ESP", {flag="ESPOn"})
+	spawn(function()
+		while wait(1) do
+			if main.flags.ESPOn then
+				for i,v in pairs(game.Players:GetChildren()) do
+					if v.Backpack:FindFirstChild("Knife") then
+						if not v.Backpack:FindFirstChild("LOL") then
+							local AddHigh = Instance.new("Highlight")
+							AddHigh.Parent = game.Workspace[tostring(v.Name)]
+							AddHigh.DepthMode = "AlwaysOnTop"
+							AddHigh.Name = "LOL"
+						end
+					elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
+						if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+							local AddHigh = Instance.new("Highlight")
+							AddHigh.Parent = game.Workspace[tostring(v.Name)]
+							AddHigh.DepthMode = "AlwaysOnTop"
+							AddHigh.Name = "LOL"
+						end
+					end
+					if v.Backpack:FindFirstChild("Gun") then
+						if not v.Backpack:FindFirstChild("LOL") then
+							local AddHigh = Instance.new("Highlight")
+							AddHigh.Parent = game.Workspace[tostring(v.Name)]
+							AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+							AddHigh.DepthMode = "AlwaysOnTop"
+							AddHigh.Name = "LOL"
+						end
+					elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Gun") then
+						if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+							local AddHigh = Instance.new("Highlight")
+							AddHigh.Parent = game.Workspace[tostring(v.Name)]
+							AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+							AddHigh.DepthMode = "AlwaysOnTop"
+							AddHigh.Name = "LOL"
+						end
+					end
+					if game.Workspace:FindFirstChild("GunDrop") then
+						if not game.Workspace.GunDrop:FindFirstChild("LOL") then
+							local AddHigh = Instance.new("Highlight")
+							AddHigh.Parent = game.Workspace.GunDrop
+							AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+							AddHigh.DepthMode = "AlwaysOnTop"
+							AddHigh.Name = "LOL"
+						end
+					end
+				end
+			end
+		end
+	end)
+elseif game.PlaceId == 7269094850 then
+	local GameName = main:Section("BS:ED")
+
+	local names = {
+		"5 Gold",
+		"50 Metal",
+		"250 Press",
+		"100 Microparticles",
+		"12 Star",
+		"12 Gold",
+		"25 Ruby",
+		"1 Gold"
+	}
+
+	function GetButtons()
+		for i,v in pairs(workspace.Stardustry.Buttons:GetChildren()) do
+			v.Name = v.InfoGUI.Give.Text
+			if table.find(names, v.Name) then
+				v.ButtonPart.CanCollide = false
+				v.ButtonPart.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+			end
+		end	
+	end
+
+	local Get = main:Button("Get Sturdustry Buttons", function()
+		GetButtons()
+	end)
+elseif game.PlaceId == 9421227126 then
+
+	local Blade = main:Section("The Dank Murderer 2")
+
+	local AutoFarm = main:Toggle("AutoFarm", {flag="AutoFarmOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoFarmOn then
+				for i,v in pairs(game.Workspace.CoinHolder:GetChildren()) do
+					if game.Workspace.CoinHolder:FindFirstChild(v.Name) and v.Name ~= "LobbyCoin" then
+						game.Workspace[game.Players.LocalPlayer.Name].Humanoid:MoveTo(game.Workspace.CoinHolder:FindFirstChild(v.Name).Main.Position) 
+						game.Workspace[game.Players.LocalPlayer.Name].Humanoid.MoveToFinished:Wait()
+					end
+				end
+			end
+		end
+	end)
+
+	local AutoFarmv2 = main:Toggle("AutoFarmObby", {flag="AutoFarmObbyOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoFarmObbyOn then
+				if game.Workspace.CoinHolder:FindFirstChild("LobbyCoin") then
+					game.Workspace[game.Players.LocalPlayer.Name].Humanoid:MoveTo(game.Workspace.CoinHolder:FindFirstChild("LobbyCoin").Main.Position) 
+				end
+			end
+		end
+	end)
+
+	local AutoOpen = main:Toggle("AutoOpen", {flag="OpenOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.OpenOn then
+				if game.Players.LocalPlayer.Data.Coins.Value >= 1 then
+					game.ReplicatedStorage.Events.OpenCrate:FireServer("Sapphire Crate")
+					for i,v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
+						if v.Name == "CaseSpinner" then
+							v:Destroy() 
+						end
+					end
+				end   
+			end
+		end
+	end)
+elseif game.PlaceId == 6456351776 then
+	local ScreenGui = Instance.new("ScreenGui")
+	local TextBox = Instance.new("TextBox")
+	local CurrentPlayer = game.Players.LocalPlayer
+
+	function GetTag(Char)
+		if not Char then return end
+		Char:WaitForChild("Head")
+		Char.Head:WaitForChild("NameTag", 1):Destroy()
+		local Attachment = Instance.new("Attachment", Char.Head)
+		Attachment.Position += Vector3.new(0,2.2,0)
+		Attachment.Name = "GUIAttachment"
+		local Gui = Instance.new("BillboardGui", Attachment)
+		Gui.Size = UDim2.new(4, 0, 2, 0)
+		local Text = Instance.new("TextLabel", Gui)
+		Text.Size = UDim2.new(1,0,1,0)
+		Text.TextScaled = true
+		Text.TextWrapped = true
+		Text.Text = Char.Name
+		Text.TextColor3 = Color3.fromRGB(255,255,255)
+		Text.BackgroundTransparency = 1
+	end
+
+	ScreenGui.Parent = game.CoreGui
+
+	TextBox.Parent = ScreenGui
+	TextBox.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+	TextBox.Position = UDim2.new(0, 1760, 1, -50)
+	TextBox.Size = UDim2.new(0, 150, 0, 25)
+	TextBox.Font = Enum.Font.SourceSans
+	TextBox.Text = "Insert Player Name"
+	TextBox.TextColor3 = Color3.new(1, 1, 1)
+	TextBox.TextScaled = true
+	TextBox.TextSize = 14
+	TextBox.TextWrapped = true
+
+
+	local Showel = main:Section("Kaiju Paradise")
+
+	local Teleport = main:Toggle("TPplayer", {flag="TPOn"})
+	local FarmKills = main:Toggle("FarmKills (Other)", {flag="Farm"})
+	local Rename = main:Toggle("RenamePlayers", {flag="Rename"})
+
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.TPOn then
+				local ooooooof = TextBox.Text
+				local you = game.Players.LocalPlayer.Character
+				local other = game.Workspace:FindFirstChild(ooooooof)
+				if game.Workspace:FindFirstChild(ooooooof) and you:FindFirstChild("HumanoidRootPart") and other:FindFirstChild("HumanoidRootPart") then
+					if CurrentPlayer.PlayerGui.MainGui.InventoryGui:FindFirstChild("1") then
+						if CurrentPlayer.PlayerGui.MainGui.InventoryGui:FindFirstChild("1").Tool.Value == "Attack" then
+							if main.flags.Farm then game.Players.LocalPlayer:LoadCharacter() end
+							you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,1))
+						else
+							if main.flags.Farm then
+								you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,-1))
+							else
+								you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,2))
+							end
+						end
+					else
+						if main.flags.Farm then
+							you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,-1))
+						else
+							you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,2))
+						end
+					end
+				end
+			end
+		end
+	end)
+
+	game.Players.PlayerAdded:Connect(function(plr)
+		repeat wait(.1) until plr.Character
+		if main.flags.Rename then
+			GetTag(plr.Character)
+		end
+		plr.CharacterAdded:Connect(function(Char)
+			if main.flags.Rename then
+				GetTag(Char)
+			end
+		end)
+	end)
+
+	for i,v in pairs(game.Players:GetChildren()) do
+		if main.flags.Rename then
+			GetTag(v.Character)
+		end
+		v.CharacterAdded:Connect(function(Char)
+			if main.flags.Rename then
+				GetTag(Char)
+			end
+		end)
+	end
+elseif game.PlaceId == 16051973234 then
+
+	local ScreenGui = Instance.new("ScreenGui")
+	local TextBox = Instance.new("TextBox")
+
+	-- Properties
+
+	ScreenGui.Parent = game.CoreGui
+
+	TextBox.Parent = ScreenGui
+	TextBox.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+	TextBox.Position = UDim2.new(0, 1760, 1, -50)
+	TextBox.Size = UDim2.new(0, 150, 0, 25)
+	TextBox.Font = Enum.Font.SourceSans
+	TextBox.Text = "Insert Player Name"
+	TextBox.TextColor3 = Color3.new(1, 1, 1)
+	TextBox.TextScaled = true
+	TextBox.TextSize = 14
+	TextBox.TextWrapped = true
+
+
+	local Showel = main:Section("Project: KILLSTREAK")
+
+	local Teleport = main:Toggle("TPplayer", {flag="TPOn"})
+	local KillDummyes = main:Toggle("KillDummyes", {flag="KillDummyesOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.TPOn then
+				local ooooooof = TextBox.Text
+				local you = game.Players.LocalPlayer.Character
+				local other = game.Workspace:FindFirstChild(ooooooof)
+				if game.Workspace:FindFirstChild(ooooooof) and you:FindFirstChild("HumanoidRootPart") and other:FindFirstChild("HumanoidRootPart") then
+					you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,4))
+				end
+			end
+			if main.flags.KillDummyesOn then
+				for i,v in pairs(workspace.Dummys:GetChildren()) do
+					local you = game.Players.LocalPlayer.Character
+					local other = v
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					if v and you:FindFirstChild("HumanoidRootPart") and other:FindFirstChild("HumanoidRootPart") then
+						other:PivotTo(you.HumanoidRootPart.CFrame * CFrame.new(0,0,-4))
+					end
+				end
+			end
+		end
+	end)
+elseif game.PlaceId == 10531659515 then
+
+	local ScreenGui = Instance.new("ScreenGui")
+	local TextBox = Instance.new("TextBox")
+
+	-- Properties
+
+	ScreenGui.Parent = game.CoreGui
+
+	TextBox.Parent = ScreenGui
+	TextBox.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+	TextBox.Position = UDim2.new(0, 1760, 1, -50)
+	TextBox.Size = UDim2.new(0, 150, 0, 25)
+	TextBox.Font = Enum.Font.SourceSans
+	TextBox.Text = "Insert Player Name"
+	TextBox.TextColor3 = Color3.new(1, 1, 1)
+	TextBox.TextScaled = true
+	TextBox.TextSize = 14
+	TextBox.TextWrapped = true
+
+
+	local Showel = main:Section("Showel Battle")
+
+	local Teleport = main:Toggle("TPplayer", {flag="TPOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.TPOn then
+				local ooooooof = TextBox.Text
+				local you = game.Players.LocalPlayer.Character
+				local other = game.Workspace:FindFirstChild(ooooooof)
+				if game.Workspace:FindFirstChild(ooooooof) and you:FindFirstChild("HumanoidRootPart") and other:FindFirstChild("HumanoidRootPart") then
+					you:PivotTo(other.HumanoidRootPart.CFrame * CFrame.new(0,0,7))
+				end
+			end
+		end
+	end) 
+
+	local db = false
+	local Teleporttoshowel = main:Toggle("TPshowel", {flag="TPSOn"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.TPSOn and db == false then
+				local you = game.Players.LocalPlayer.Character
+				local other = game.Workspace:FindFirstChild("Snovel")
+				if game.Workspace:FindFirstChild("Snovel") then
+					other.Position = you.HumanoidRootPart.Position
+				elseif game.Workspace:FindFirstChild("GoldenSnovel") then
+					local otherg = game.Workspace:FindFirstChild("GoldenSnovel")
+					otherg.Position = you.HumanoidRootPart.Position
+				end
+			end
+		end
+	end) 
+elseif game.PlaceId == 13629830428 then
+	local ScreenGui = Instance.new("ScreenGui")
+	local TextBox = Instance.new("TextBox")
+
+	-- Properties
+	local Showel = main:Section("Killstreak Swords V3 Remake")
+
+	ScreenGui.Parent = game.CoreGui
+
+	TextBox.Parent = ScreenGui
+	TextBox.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+	TextBox.Position = UDim2.new(0, 176, 1, -50)
+	TextBox.Size = UDim2.new(0, 150, 0, 25)
+	TextBox.Font = Enum.Font.SourceSans
+	TextBox.Text = "Insert Player Name"
+	TextBox.TextColor3 = Color3.new(1, 1, 1)
+	TextBox.TextScaled = true
+	TextBox.TextSize = 14
+	TextBox.TextWrapped = true
+
+	local Teleport = main:Toggle("Farm666(other)", {flag="TPOn"})
+	local Teleport2 = main:Toggle("Kill Noobs", {flag="TpNoobs"})
+	local Teleport3 = main:Toggle("Kill Gladiators", {flag="TpGlads"})
+	local Teleport4 = main:Toggle("Kill Elite Gladiators", {flag="TpEliteGladiator"})
+	local Teleport5 = main:Toggle("Kill Darkness Demons", {flag="TPDarknessDemonds"})
+	local Teleport6 = main:Toggle("Kill Void Creatures", {flag="TpVoidCreatures"})
+	local Teleport7 = main:Toggle("Kill God Creatures", {flag="TPGodCreatures"})
+	local Teleport8 = main:Toggle("Kill God Lvl1", {flag="TpGodLvl1"})
+	local Teleport9 = main:Toggle("Kill Other Gods", {flag="TpOtherGods"})
+	spawn(function()
+		while wait() do
+			if main.flags.TPOn then
+				local ooooooof = TextBox.Text
+				local you = game.Players.LocalPlayer.Character
+				local other = game.Workspace:FindFirstChild(ooooooof)
+				if game.Workspace:FindFirstChild(ooooooof) and you:FindFirstChild("HumanoidRootPart") and other:FindFirstChild("HumanoidRootPart") then
+					you:MoveTo(other.HumanoidRootPart.Position + other.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpNoobs then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs.Noobs:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpGlads then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs.Gladiators:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpEliteGladiator then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs["Elite Gladiator"]:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpDarknessDemonds then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs["Darkness Demonds"]:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpVoidCreatures then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs["Void Creatures"]:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TPGodCreatures then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs["God Creatures"]:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpGodLvl1 then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs["Infinity Gods"].lvl1:GetChildren()) do
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end
+			end
+			if main.flags.TpOtherGods then
+				local you = game.Players.LocalPlayer.Character
+				for i,v in pairs(game.Workspace.Npcs["Infinity Gods"]:GetChildren()) do
+					if not v:IsA("Model") then continue end
+					for j,n in pairs(v:GetChildren()) do
+						if n:IsA("Part") then
+							n.CanCollide = false
+						end
+					end
+					v:MoveTo(you.HumanoidRootPart.Position + you.HumanoidRootPart.CFrame.LookVector*3)
+				end		
+			end
+		end
+	end) 
+elseif game.PlaceId == 9648883891 then
+
+	local Fest = main:Section("Festival Tycoon")
+
+	local db = false
+
+	local AutoCollect = main:Toggle("AutoMoney", {flag="AutoMoneyON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoMoneyON and db == false then
+				game.ReplicatedStorage.RemoteObjects.CollectedMoney:FireServer()
+				db = true
+				wait(1)
+				db = false
+			end
+		end
+	end)
+
+
+elseif game.PlaceId == 12067094710 then
+
+	local Empire= main:Section("Pancake Empire Tower")
+
+	local AutoUp = main:Toggle("AutoUpgrade", {flag="AutoUpgradeON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoUpgradeON then
+				game.ReplicatedStorage.TGSButtonCallbacks_ServerInvoke:FireServer("BuySellRate", 		 
+					Workspace.Plots.Plot2.IslandBase.BuySellRate.Collider.ClientComponent_OnPlayerEnter.TargetObject)
+			end
+		end
+	end)
+
+elseif game.PlaceId == 12692459668 then
+
+	local Server = main:Section("Server Simulator")
+
+	local AutoFarm = main:Toggle("AutoFarm", {flag="AutoFarmON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoFarmON then
+				game.ReplicatedStorage.Remotes.Data:FireServer(8, 1)
+				if game.Players.LocalPlayer.Upgrades.Button.Value <= 3 then
+					game.ReplicatedStorage.Remotes.Upgrade:InvokeServer("button multiplier")
+				end
+			end
+		end
+	end)
+	local GiveStats = main:Button("GiveStats")
+	spawn(function()
+		game.Players.LocalPlayer.Boosts.X2Cash.Active.Value = true
+		game.Players.LocalPlayer.Boosts.X2Cash.RemainingTime.Value = 9999999
+		game.Players.LocalPlayer.Boosts.X2Gold.Active.Value = true
+		game.Players.LocalPlayer.Boosts.X2Gold.RemainingTime.Value = 9999999
+		game.Players.LocalPlayer.Gamepasses.X2Gold.Value = true
+		game.Players.LocalPlayer.Gamepasses.X2Cash.Value = true
+	end)
+
+elseif game.Workspace:FindFirstChild("BBUI") then
+
+	local Kitty = main:Section("Hello Kitty")
+
+	local dbs = false
+
+	local AutoChest = main:Toggle("AutoChest", {flag="AutoChestON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoChestON and dbs == false then
+				local you = game.Players.LocalPlayer.Character
+				if game.Workspace:FindFirstChild("TreasureEntity"):FindFirstChild("SB BaoXiang 001") and you:FindFirstChild("HumanoidRootPart") then
+					you.HumanoidRootPart.CFrame = game.Workspace.TreasureEntity["SB BaoXiang 001"].TreasureLid.CFrame
+					dbs = true
+					wait(4)
+					dbs = false
+				end
+			end
+		end
+	end)
+
+elseif game.PlaceId == 5899995594 then
+
+	local Chart = main:Section("Difficulty Chart")
+
+	local dbs = false
+	local f = 1
+
+	local AutoStage = main:Toggle("AutoStage", {flag="AutoStageON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoStageON and dbs == false then
+				local you = game.Players.LocalPlayer.Character
+				if f <= 92 then
+					you.HumanoidRootPart.CFrame = game.Workspace.Checkpoints["Checkpoint "..f].CFrame
+					f += 1
+					dbs = true
+					wait(0.1)
+					dbs = false
+				end
+			end
+		end
+	end)
+
+elseif game.PlaceId == 6904735821 then
+
+	local Shoe = main:Section("Shoe Simulator")
+
+	local AutoChest = main:Toggle("AutoChest", {flag="ChestON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.ChestON then
+				game.ReplicatedStorage.Events.Rewards:FireServer({"TimerFinished", "Basic"})
+				game:GetService('Players').LocalPlayer.Character:MoveTo(Vector3.new(434.604004,1.25,22.31))
+				game:GetService("RunService").RenderStepped:wait(1)
+				game:GetService('Players').LocalPlayer.Character:MoveTo(Vector3.new(404.604004,1.25,22.31))
+			end
+		end
+	end)
+
+elseif game.PlaceId == 7065731541 then
+
+	local Shoe = main:Section("Speedman Simulator")
+
+	local PetOpen = main:Toggle("PetOpen", {flag="PetON"})
+	spawn(function()
+		while wait(1) do
+			if main.flags.PetON then 
+				game.ReplicatedStorage.Remotes.OpenEgg:FireServer()
+			end
+		end
+	end)
+
+	local AutoPetOpen = main:Toggle("AutoPetEvolve", {flag="AutoPetON"})
+	spawn(function()
+		while wait(5) do
+			if main.flags.AutoPetON then
+				game.ReplicatedStorage.Remotes.PetAction:InvokeServer(0, "EvolveAll")
+			end
+		end
+	end)
+
+elseif game.PlaceId == 3089478851 then
+
+	local Wizard = main:Section("Wizard Simulator")
+
+	local AutoFarm = main:Toggle("AutoFarm", {flag="AutoFarmON"})
+	spawn(function()
+		while wait(1) do
+			if main.flags.AutoFarmON then
+				game.ReplicatedStorage.Remote.AcceptQuest:FireServer("CJ:4")
+
+				game.ReplicatedStorage.Remote.CastSpell:FireServer(1, Workspace.Levels.Forest.Enemies.Dummy)
+			end
+		end
+	end)
+
+elseif game.PlaceId == 7025847767 then
+
+	local Destoyer = main:Section("Destoryer Simulator")
+
+	local AutoEgg = main:Toggle("AutoEgg1", {flag="AutoEgg1ON"})
+	spawn(function()
+		while wait(1) do
+			if main.flags.AutoEgg1ON then
+				game.Workspace.__THINGS.Remotes.HatchEgg:InvokeServer( { key = "CityEgg"; triple = true; } )
+			end
+		end
+	end)
+
+elseif game.PlaceId == 7362581013 then
+
+	local Obby = main:Section("Escape Walmart Obby")
+
+	local plr = game:GetService("Players").LocalPlayer
+
+	local AutoS = main:Toggle("MaxStage", {flag="AutoStagesON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoStagesON then
+				Workspace:FindFirstChild(plr.Name):MoveTo(Vector3.new(85, 110.029, -695))
+			end
+		end
+	end)
+
+	local AutoR = main:Toggle("AutoRebirths", {flag="AutoRebirthsON"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoRebirthsON then
+				game.ReplicatedStorage.ResetStats:FireServer()
+			end
+		end
+	end)
+
+elseif game.PlaceId == 6628835921 then
+
+	local Money = main:Section("Money Simulator")
+
+	local AutoM = main:Toggle("AutoMoney", {flag="AutoMoneyN"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoMoneyN then
+				game.ReplicatedStorage.GetMoney:FireServer("DropOn", 0)
+			end
+		end
+	end)
+	local AutoF = main:Toggle("AutoFill", {flag="AutoFillN"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoFillN then
+				game.ReplicatedStorage.FillMoney:FireServer()
+			end
+		end
+	end)
+	local AutoP = main:Toggle("AutoPower", {flag="AutoPowerN"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoPowerN then
+				game.ReplicatedStorage.UpgradePower:FireServer()
+			end
+		end
+	end)
+	local AutoB = main:Toggle("AutoBags", {flag="AutoBagsN"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoBagsN then
+				game.ReplicatedStorage.UpgradeBag:FireServer()
+			end
+		end
+	end)
+	local AutoR = main:Toggle("AutoRank", {flag="AutoRankN"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoRankN then
+				game.ReplicatedStorage.UpgradeRank:FireServer()
+			end
+		end
+	end)
+	local AutoT = main:Toggle("AutoTier", {flag="AutoTierN"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoTierN then
+				game.ReplicatedStorage.TierUp:FireServer()
+			end
+		end
+	end)
+	local runbu = 1
+	local rume1 = main:Slider("Rune1", {
+		min=1;
+		max=10000;
+		flag="rune1"}, function(v)
+		runbu = v
+	end)
+	local Bur = main:Toggle("BuyRune1", {flag="AutoRune1N"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoRune1N then
+				game.ReplicatedStorage.BuyRune:FireServer(runbu)
+			end
+		end
+	end)
+	local runbu2 = 1
+	local rume2 = main:Slider("Rune2", {
+		min=1;
+		max=10000;
+		flag="rune2"}, function(v)
+		runbu2 = v
+	end)
+	local Bur2 = main:Toggle("BuyRune2", {flag="AutoRune2N"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoRune2N then
+				game.ReplicatedStorage.BuyRune2:FireServer(runbu2)
+			end
+		end
+	end)
+	local runbu3 = 1
+	local rume3 = main:Slider("Rune3", {
+		min=1;
+		max=10000;
+		flag="rune3"}, function(v)
+		runbu3 = v
+	end)
+	local Bur3 = main:Toggle("BuyRune3", {flag="AutoRune3N"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoRune3N then
+				game.ReplicatedStorage.BuyRune3:FireServer(runbu3)
+			end
+		end
+	end)
+	local runbu4 = 1
+	local rume4 = main:Slider("Rune4", {
+		min=1;
+		max=10000;
+		flag="rune4"}, function(v)
+		runbu4 = v
+	end)
+	local Bur4 = main:Toggle("BuyRune4", {flag="AutoRune4N"})
+	spawn(function()
+		while game:GetService("RunService").RenderStepped:wait() do
+			if main.flags.AutoRune4N then
+				game.ReplicatedStorage.BuyRune3:FireServer(runbu4)
+			end
+		end
+	end)
+end
+local Owner = main:Section("Created by LOR3M")
