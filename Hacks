@@ -52,7 +52,7 @@ Rayfield:Notify({
 if game.PlaceId == 142823291 then
 	local GmName = MainTab:CreateSection("Murder Mystery 2")
 	local Stopped = false
-    local FF = false
+	local FF = false
 	local Toggle = MainTab:CreateToggle({
 		Name = "AutoFarm",
 		CurrentValue = false,
@@ -95,10 +95,10 @@ if game.PlaceId == 142823291 then
 														end
 														wait(1.8)		
 													end
-                                                    ff = false
-                                                elseif ff == true then
-                                                    ff = false
-                                                    game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
+													FF = false
+												elseif FF == true then
+													FF = false
+													game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 												end
 											end 
 										else
@@ -128,10 +128,10 @@ if game.PlaceId == 142823291 then
 														end
 														wait(1.8)		
 													end
-                                                    ff = false
-                                                elseif ff == true then
-                                                    ff = false
-                                                    game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
+													FF = false
+												elseif FF == true then
+													FF = false
+													game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 												end
 											end
 										end 
