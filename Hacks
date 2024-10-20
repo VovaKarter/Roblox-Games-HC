@@ -57,7 +57,7 @@ if game.PlaceId == 142823291 then
 				if Value then
 					if Stopped == false then
 						Stopped = true
-						local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2")
+						local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2")
 						if Map then
 							if Map:FindFirstChild("CoinContainer") then
 								for i,v in pairs(Map.CoinContainer:GetChildren()) do 
