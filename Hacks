@@ -57,24 +57,25 @@ if game.PlaceId == 142823291 then
 				if Value then
 					if Stopped == false then
 						Stopped = true
-						if game.Workspace:FindFirstChild("Barn") then
-							if game.Workspace.Barn:FindFirstChild("CoinContainer") then
-								for i,v in pairs(game.Workspace.Barn.CoinContainer:GetChildren()) do 
+						local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3")
+						if Map then
+							if Map:FindFirstChild("CoinContainer") then
+								for i,v in pairs(Map.CoinContainer:GetChildren()) do 
 									if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
 										if game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
 											if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
 												if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
-													if game.Workspace.Barn:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
 														wait(1.5)
-														local Pos = game.Workspace.Barn.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-														local NewPart = Instance.new("Part", game.Workspace.Barn)
+														local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+														local NewPart = Instance.new("Part", Map)
 														NewPart.Size = Vector3.new(2048, 69.039, 2048)
 														NewPart.Anchored = true
 														NewPart.Position = Pos
 														NewPart.Name = "NewPart"
 													end
-													if #game.Workspace.Barn:GetChildren() >= 2 then
-														for i,v in pairs(game.Workspace.Barn:GetChildren()) do
+													if #Map:GetChildren() >= 2 then
+														for i,v in pairs(Map:GetChildren()) do
 															if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
 																v:Destroy()
 															end
@@ -93,17 +94,17 @@ if game.PlaceId == 142823291 then
 										else
 											if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
 												if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
-													if game.Workspace.Barn:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+													if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
 														wait(1.5)
-														local Pos = game.Workspace.Barn.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-														local NewPart = Instance.new("Part", game.Workspace.Barn)
+														local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+														local NewPart = Instance.new("Part", Map)
 														NewPart.Size = Vector3.new(2048, 69.039, 2048)
 														NewPart.Anchored = true
 														NewPart.Position = Pos
 														NewPart.Name = "NewPart"
 													end
-													if #game.Workspace.Barn:GetChildren() >= 2 then
-														for i,v in pairs(game.Workspace.Barn:GetChildren()) do
+													if #Map:GetChildren() >= 2 then
+														for i,v in pairs(Map:GetChildren()) do
 															if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
 																v:Destroy()
 															end
@@ -120,72 +121,6 @@ if game.PlaceId == 142823291 then
 												end
 											end
 										end 
-									end
-								end
-							end
-						elseif game.Workspace:FindFirstChild("Christmas") then
-							if game.Workspace.Christmas:FindFirstChild("CoinContainer") then
-								for i,v in pairs(game.Workspace.Christmas.CoinContainer:GetChildren()) do
-									if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-										if game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Lobby") then
-											if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Lobby.Dock:FindFirstChild("CoinBag") then
-												if game.Players.LocalPlayer.PlayerGui.MainGUI.Lobby.Dock.CoinBag.Full.Visible == false then
-													if game.Workspace.Christmas:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-														wait(1.5)
-														local Pos = game.Workspace.Christmas.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-														local NewPart = Instance.new("Part", game.Workspace.Christmas)
-														NewPart.Anchored = true
-														NewPart.Size = Vector3.new(2048, 69.039, 2048)
-														NewPart.Position = Pos
-														NewPart.Name = "NewPart"
-													end
-													if #game.Workspace.Christmas:GetChildren() >= 2 then
-														for i,v in pairs(game.Workspace.Christmas:GetChildren()) do
-															if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-																v:Destroy()
-															end
-														end
-													end
-													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-														wait(0.7)
-														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-														end
-														wait(2.3)	
-													end
-												end
-											end
-										else
-											if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
-												if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
-													if game.Workspace.Christmas:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-														wait(1.5)
-														local Pos = game.Workspace.Christmas.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-														local NewPart = Instance.new("Part", game.Workspace.Christmas)
-														NewPart.Anchored = true
-														NewPart.Size = Vector3.new(2048, 69.039, 2048)
-														NewPart.Position = Pos
-														NewPart.Name = "NewPart"
-													end
-													if #game.Workspace.Christmas:GetChildren() >= 2 then
-														for i,v in pairs(game.Workspace.Christmas:GetChildren()) do
-															if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-																v:Destroy()
-															end
-														end
-													end
-													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-														wait(0.7)
-														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-														end
-														wait(2.3)	
-													end
-												end
-											end
-										end
 									end
 								end
 							end
