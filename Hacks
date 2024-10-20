@@ -92,7 +92,7 @@ if game.PlaceId == 142823291 then
 														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
 															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
 														end
-														wait(2)		
+														wait(1.8)		
 													end
 												end
 											end 
@@ -121,7 +121,7 @@ if game.PlaceId == 142823291 then
 														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
 															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
 														end
-														wait(2)		
+														wait(1.8)		
 													end
 												end
 											end
