@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet('https://[Log in to view URL]'))()
 
 local bb=game:service'VirtualUser'
 game:service'Players'.LocalPlayer.Idled:connect(function()
@@ -52,6 +52,7 @@ Rayfield:Notify({
 if game.PlaceId == 142823291 then
 	local GmName = MainTab:CreateSection("Murder Mystery 2")
 	local Stopped = false
+    local FF = false
 	local Toggle = MainTab:CreateToggle({
 		Name = "AutoFarm",
 		CurrentValue = false,
@@ -62,7 +63,7 @@ if game.PlaceId == 142823291 then
 				if Value then
 					if Stopped == false then
 						Stopped = true
-						local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation")
+						local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace")
 						if Map then
 							if Map:FindFirstChild("CoinContainer") then
 								for i,v in pairs(Map.CoinContainer:GetChildren()) do 
@@ -94,6 +95,10 @@ if game.PlaceId == 142823291 then
 														end
 														wait(1.8)		
 													end
+                                                    ff = false
+                                                elseif ff == true then
+                                                    ff = false
+                                                    game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 												end
 											end 
 										else
@@ -123,6 +128,10 @@ if game.PlaceId == 142823291 then
 														end
 														wait(1.8)		
 													end
+                                                    ff = false
+                                                elseif ff == true then
+                                                    ff = false
+                                                    game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 												end
 											end
 										end 
