@@ -62,7 +62,7 @@ if game.PlaceId == 142823291 then
 				if Map:FindFirstChild("CoinContainer") then
 					for i,v in pairs(Map.CoinContainer:GetChildren()) do 
 						if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-							if game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
+							if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
 								if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
 									if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
 										if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
@@ -152,7 +152,7 @@ if game.PlaceId == 142823291 then
 							if Map:FindFirstChild("CoinContainer") then
 								for i,v in pairs(Map.CoinContainer:GetChildren()) do 
 									if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-										if game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
+										if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
 											if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
 												if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
 													if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
