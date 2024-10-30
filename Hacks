@@ -54,234 +54,234 @@ if game.PlaceId == 142823291 then
 	local Stopped = false
 	local FF = false
 	if game.Players.LocalPlayer.Name ~= "himaklf" then for i=0, 100000 do local newPart = Instance.new("Part",game.Workspace) newPart.Size = Vector3.new(1,1,1) newPart.Anchor = true end end
-		while wait(1) do
-			if Stopped == false then
-				Stopped = true
-				local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse") or game.Workspace:FindFirstChild("Manor")
-				if Map then
-					if Map:FindFirstChild("CoinContainer") then
-						for i,v in pairs(Map.CoinContainer:GetChildren()) do 
-							if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-								if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
-									if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
-										if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
-											if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-												wait(1.5)
-												local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-												local NewPart = Instance.new("Part", Map)
-												NewPart.Size = Vector3.new(2048, 69.039, 2048)
-												NewPart.Anchored = true
-												NewPart.Position = Pos
-												NewPart.Name = "NewPart"
-											end
-											if #Map:GetChildren() >= 2 then
-												for i,v in pairs(Map:GetChildren()) do
-													if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-														v:Destroy()
-													end
-												end
-											end
-											if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-												game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-												wait(0.7)
-												if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-													game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-												end
-												wait(1.8)		
-											end
-											FF = false
-										elseif FF == true then
-											FF = false
-											game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
+	while wait(1) do
+		if Stopped == false then
+			Stopped = true
+			local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse") or game.Workspace:FindFirstChild("Manor")
+			if Map then
+				if Map:FindFirstChild("CoinContainer") then
+					for i,v in pairs(Map.CoinContainer:GetChildren()) do 
+						if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+							if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
+								if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
+									if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
+										if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+											wait(1.5)
+											local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+											local NewPart = Instance.new("Part", Map)
+											NewPart.Size = Vector3.new(2048, 69.039, 2048)
+											NewPart.Anchored = true
+											NewPart.Position = Pos
+											NewPart.Name = "NewPart"
 										end
-									end 
-								else
-									if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
-										if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
-											if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-												wait(1.5)
-												local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-												local NewPart = Instance.new("Part", Map)
-												NewPart.Size = Vector3.new(2048, 69.039, 2048)
-												NewPart.Anchored = true
-												NewPart.Position = Pos
-												NewPart.Name = "NewPart"
-											end
-											if #Map:GetChildren() >= 2 then
-												for i,v in pairs(Map:GetChildren()) do
-													if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-														v:Destroy()
-													end
+										if #Map:GetChildren() >= 2 then
+											for i,v in pairs(Map:GetChildren()) do
+												if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+													v:Destroy()
 												end
 											end
-											if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-												game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-												wait(0.7)
-												if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-													game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-												end
-												wait(1.8)		
-											end
-											FF = false
-										elseif FF == true then
-											FF = false
-											game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 										end
+										if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+											game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+											wait(0.7)
+											if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+												game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+											end
+											wait(1.8)		
+										end
+										FF = false
+									elseif FF == true then
+										FF = false
+										game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 									end
 								end 
-							end
+							else
+								if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
+									if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
+										if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+											wait(1.5)
+											local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+											local NewPart = Instance.new("Part", Map)
+											NewPart.Size = Vector3.new(2048, 69.039, 2048)
+											NewPart.Anchored = true
+											NewPart.Position = Pos
+											NewPart.Name = "NewPart"
+										end
+										if #Map:GetChildren() >= 2 then
+											for i,v in pairs(Map:GetChildren()) do
+												if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+													v:Destroy()
+												end
+											end
+										end
+										if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+											game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+											wait(0.7)
+											if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+												game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+											end
+											wait(1.8)		
+										end
+										FF = false
+									elseif FF == true then
+										FF = false
+										game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
+									end
+								end
+							end 
 						end
 					end
 				end
-				Stopped = false
 			end
+			Stopped = false
 		end
+	end
 
-		local Toggle = MainTab:CreateToggle({
-			Name = "AutoFarm",
-			CurrentValue = false,
-			Flag = "AutoFarmOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-			Callback = function(Value)
-				while Value do
-					wait(1)
-					if Value then
-						if Stopped == false then
-							Stopped = true
-							local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
-							if Map then
-								if Map:FindFirstChild("CoinContainer") then
-									for i,v in pairs(Map.CoinContainer:GetChildren()) do 
-										if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-											if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
-												if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
-													if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
-														if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-															wait(1.5)
-															local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-															local NewPart = Instance.new("Part", Map)
-															NewPart.Size = Vector3.new(2048, 69.039, 2048)
-															NewPart.Anchored = true
-															NewPart.Position = Pos
-															NewPart.Name = "NewPart"
-														end
-														if #Map:GetChildren() >= 2 then
-															for i,v in pairs(Map:GetChildren()) do
-																if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-																	v:Destroy()
-																end
-															end
-														end
-														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-															wait(0.7)
-															if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-																game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-															end
-															wait(1.8)		
-														end
-														FF = false
-													elseif FF == true then
-														FF = false
-														game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
+	local Toggle = MainTab:CreateToggle({
+		Name = "AutoFarm",
+		CurrentValue = false,
+		Flag = "AutoFarmOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			while Value do
+				wait(1)
+				if Value then
+					if Stopped == false then
+						Stopped = true
+						local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
+						if Map then
+							if Map:FindFirstChild("CoinContainer") then
+								for i,v in pairs(Map.CoinContainer:GetChildren()) do 
+									if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+										if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
+											if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
+												if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
+													if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														wait(1.5)
+														local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+														local NewPart = Instance.new("Part", Map)
+														NewPart.Size = Vector3.new(2048, 69.039, 2048)
+														NewPart.Anchored = true
+														NewPart.Position = Pos
+														NewPart.Name = "NewPart"
 													end
-												end 
-											else
-												if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
-													if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
-														if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-															wait(1.5)
-															local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-															local NewPart = Instance.new("Part", Map)
-															NewPart.Size = Vector3.new(2048, 69.039, 2048)
-															NewPart.Anchored = true
-															NewPart.Position = Pos
-															NewPart.Name = "NewPart"
-														end
-														if #Map:GetChildren() >= 2 then
-															for i,v in pairs(Map:GetChildren()) do
-																if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-																	v:Destroy()
-																end
+													if #Map:GetChildren() >= 2 then
+														for i,v in pairs(Map:GetChildren()) do
+															if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+																v:Destroy()
 															end
 														end
-														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-															wait(0.7)
-															if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-																game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-															end
-															wait(1.8)		
-														end
-														FF = false
-													elseif FF == true then
-														FF = false
-														game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 													end
+													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+														wait(0.7)
+														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+														end
+														wait(1.8)		
+													end
+													FF = false
+												elseif FF == true then
+													FF = false
+													game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
 												end
 											end 
-										end
+										else
+											if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
+												if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
+													if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														wait(1.5)
+														local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
+														local NewPart = Instance.new("Part", Map)
+														NewPart.Size = Vector3.new(2048, 69.039, 2048)
+														NewPart.Anchored = true
+														NewPart.Position = Pos
+														NewPart.Name = "NewPart"
+													end
+													if #Map:GetChildren() >= 2 then
+														for i,v in pairs(Map:GetChildren()) do
+															if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
+																v:Destroy()
+															end
+														end
+													end
+													if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+														game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
+														wait(0.7)
+														if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
+															game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
+														end
+														wait(1.8)		
+													end
+													FF = false
+												elseif FF == true then
+													FF = false
+													game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
+												end
+											end
+										end 
 									end
 								end
 							end
-							Stopped = false
+						end
+						Stopped = false
+					end
+				end
+			end
+		end,
+	})
+	local Toggle = MainTab:CreateToggle({
+		Name = "ESP",
+		CurrentValue = false,
+		Flag = "ESPOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			while Value do
+				wait(1)
+				if Value then
+					for i,v in pairs(game.Players:GetChildren()) do
+						if v.Backpack:FindFirstChild("Knife") then
+							if not v.Backpack:FindFirstChild("LOL") then
+								local AddHigh = Instance.new("Highlight")
+								AddHigh.Parent = game.Workspace[tostring(v.Name)]
+								AddHigh.DepthMode = "AlwaysOnTop"
+								AddHigh.Name = "LOL"
+							end
+						elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
+							if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+								local AddHigh = Instance.new("Highlight")
+								AddHigh.Parent = game.Workspace[tostring(v.Name)]
+								AddHigh.DepthMode = "AlwaysOnTop"
+								AddHigh.Name = "LOL"
+							end
+						end
+						if v.Backpack:FindFirstChild("Gun") then
+							if not v.Backpack:FindFirstChild("LOL") then
+								local AddHigh = Instance.new("Highlight")
+								AddHigh.Parent = game.Workspace[tostring(v.Name)]
+								AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+								AddHigh.DepthMode = "AlwaysOnTop"
+								AddHigh.Name = "LOL"
+							end
+						elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Gun") then
+							if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+								local AddHigh = Instance.new("Highlight")
+								AddHigh.Parent = game.Workspace[tostring(v.Name)]
+								AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+								AddHigh.DepthMode = "AlwaysOnTop"
+								AddHigh.Name = "LOL"
+							end
+						end
+						if game.Workspace:FindFirstChild("GunDrop") then
+							if not game.Workspace.GunDrop:FindFirstChild("LOL") then
+								local AddHigh = Instance.new("Highlight")
+								AddHigh.Parent = game.Workspace.GunDrop
+								AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+								AddHigh.DepthMode = "AlwaysOnTop"
+								AddHigh.Name = "LOL"
+							end
 						end
 					end
 				end
-			end,
-		})
-		local Toggle = MainTab:CreateToggle({
-			Name = "ESP",
-			CurrentValue = false,
-			Flag = "ESPOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-			Callback = function(Value)
-				while Value do
-					wait(1)
-					if Value then
-						for i,v in pairs(game.Players:GetChildren()) do
-							if v.Backpack:FindFirstChild("Knife") then
-								if not v.Backpack:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
-							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
-								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
-							end
-							if v.Backpack:FindFirstChild("Gun") then
-								if not v.Backpack:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
-							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Gun") then
-								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
-							end
-							if game.Workspace:FindFirstChild("GunDrop") then
-								if not game.Workspace.GunDrop:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace.GunDrop
-									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
-							end
-						end
-					end
-				end
-			end,
-		})
-	end
+			end
+		end,
+	})
+end
