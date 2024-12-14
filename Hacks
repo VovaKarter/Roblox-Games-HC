@@ -224,13 +224,9 @@ elseif game.PlaceId == 6456351776 then
 		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
 			Setter = Value
-			if plr.PlayerScripts.Core:FindFirstChild("Init") then
-				Cloned = plr.PlayerScripts.Core:FindFirstChild("Init"):Clone()
-				plr.PlayerScripts.Core.Init:Destroy()	
-			elseif Cloned then
-				Cloned.Parent = plr.PlayerScripts.Core
-			end
 			if Setter == false then
+				Cloned = plr.PlayerScripts.Core:FindFirstChild("Init"):Clone()
+				plr.PlayerScripts.Core.Init:Destroy()
 				while Setter do
 					wait()
 					if Setter then
@@ -247,6 +243,8 @@ elseif game.PlaceId == 6456351776 then
 						db = false
 					end
 				end
+			else
+				Cloned.Parent = plr.PlayerScripts.Core
 			end
 		end,
 	})
