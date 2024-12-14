@@ -207,14 +207,10 @@ elseif game.PlaceId == 6456351776 then
 	local MyChar = game.Players.LocalPlayer.Character
 	local plr = game.Players.LocalPlayer
 
-	if plr.PlayerScripts.Core:FindFirstChild("Init") then
-		plr.PlayerScripts.Core.Init:Destroy()
-	end
-
-	MyChar.Humanoid.Health = 1e9
-
 	local db = false
 	local Setter = false
+
+	local Cloned
 
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "Pumpkin Farm",
@@ -222,12 +218,23 @@ elseif game.PlaceId == 6456351776 then
 		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
 			Setter = Value
+			
+			if Setter then
+				if plr.PlayerScripts.Core:FindFirstChild("Init") then
+					Cloned = plr.PlayerScripts.Core.Init:Clone()
+					plr.PlayerScripts.Core.Init:Destroy()
+				end
+			elseif Cloned then
+				Cloned.Parent = plr.PlayerScripts.Core
+			end
+			
 			while Setter do
 				wait()
 				if Setter then
 					if db then return end
 					db = true
 					for i,v in pairs(Workspace.Terrain:GetChildren()) do
+						if not Setter then db = false return end
 						if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
 						if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
 						MyChar:PivotTo(v.MainPart.CFrame)
