@@ -1,13 +1,3 @@
-local Player = game.Players[(tostring(script.Parent.Parent.Name))]
-local Character = Player.Character or Player.CharcterAdded:wait()
-local Camera1 = game.Workspace.Camera
-local Haha = Camera1.Parent:WaitForChild("CamPart1")
-
-Camera1.CameraType = Enum.CameraType.Scriptable
-Camera1.CFrame = Haha.CFrame
-
-
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local bb=game:GetService("VirtualUser")
