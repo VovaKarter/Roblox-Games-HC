@@ -244,15 +244,15 @@ elseif game.PlaceId == 6456351776 then
 	})
 
 	local Dropdown = MM2Tab:CreateDropdown({
-  		Name = "Teleports",
-   		Options = {"Bestiary"},
-  		CurrentOption = {"Bestiary"},
-   		MultipleOptions = false,
-   		Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   		Callback = function(Option)
+		Name = "Teleports",
+		Options = {"Bestiary", "Nothing"},
+		CurrentOption = {"Bestiary"},
+		MultipleOptions = false,
+		Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Option)
 			if Option == "Bestiary" then
 				plr.Character:PivotTo(Workspace.Scripted.Other.Bestiary.Computer.Proximity.CFrame)
 			end
-   		end,
+		end,
 	})
 end
