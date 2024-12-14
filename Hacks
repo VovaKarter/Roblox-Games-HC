@@ -235,6 +235,7 @@ elseif game.PlaceId == 6456351776 then
 									New.Parent = plr.PlayerScripts.Core
 									Connected1:Disconnect()
 									Connected1 = nil
+									wait(2)
 								end
 							end
 						end)
