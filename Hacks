@@ -253,7 +253,7 @@ elseif game.PlaceId == 6456351776 then
 		Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Option)
 			print(Option)
-			if Option == "Bestiary" then
+			if Option[1] == "Bestiary" then
 				plr.Character:PivotTo(Workspace.Scripted.Other.Bestiary.Computer.Proximity.CFrame)
 			end
 		end,
