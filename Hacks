@@ -50,93 +50,12 @@ Rayfield:Notify({
 })
 
 if game.PlaceId == 142823291 then
-	local GmName = MainTab:CreateSection("Murder Mystery 2")
+	local MM2Tab = Window:CreateTab("💥MM2", nil) -- Title, Image
+	local GmName = MM2Tab:CreateSection("Murder Mystery 2")
 	local Stopped = false
 	local FF = false
-	while wait(1) do
-		if Stopped == false then
-			Stopped = true
-			local Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse") or game.Workspace:FindFirstChild("Manor")
-			if Map then
-				if Map:FindFirstChild("CoinContainer") then
-					for i,v in pairs(Map.CoinContainer:GetChildren()) do 
-						if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-							if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGUI") and game.Players.LocalPlayer.PlayerGui.MainGUI:FindFirstChild("Game") then
-								if v:FindFirstChild("TouchInterest") and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags") then
-									if game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CoinBags").Container.Candy.Full.Visible == false then
-										if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-											wait(1.5)
-											local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-											local NewPart = Instance.new("Part", Map)
-											NewPart.Size = Vector3.new(2048, 69.039, 2048)
-											NewPart.Anchored = true
-											NewPart.Position = Pos
-											NewPart.Name = "NewPart"
-										end
-										if #Map:GetChildren() >= 2 then
-											for i,v in pairs(Map:GetChildren()) do
-												if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-													v:Destroy()
-												end
-											end
-										end
-										if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-											game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-											wait(0.7)
-											if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-												game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-											end
-											wait(1.8)		
-										end
-										FF = false
-									elseif FF == true then
-										FF = false
-										game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
-									end
-								end 
-							else
-								if v.Name ~= "CollectedCoin" and game.Players.LocalPlayer.PlayerGui.MainGUI.Game:FindFirstChild("CashBag") then
-									if game.Players.LocalPlayer.PlayerGui.MainGUI.Game.CashBag.Full.Visible == false then
-										if Map:FindFirstChild("Map") and game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-											wait(1.5)
-											local Pos = Map.Map.WorldPivot.Position - Vector3.new(0, 200, 0)
-											local NewPart = Instance.new("Part", Map)
-											NewPart.Size = Vector3.new(2048, 69.039, 2048)
-											NewPart.Anchored = true
-											NewPart.Position = Pos
-											NewPart.Name = "NewPart"
-										end
-										if #Map:GetChildren() >= 2 then
-											for i,v in pairs(Map:GetChildren()) do
-												if v.Name ~= "CoinContainer" and v.Name ~= "NewPart" then
-													v:Destroy()
-												end
-											end
-										end
-										if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-											game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(v.Position)
-											wait(0.7)
-											if game.Workspace:FindFirstChild(tostring(game.Players.LocalPlayer.Name)) then
-												game.Workspace[game.Players.LocalPlayer.Name]:MoveTo(game.Workspace.Lobby.Spawns.SpawnLocation.Position)	
-											end
-											wait(1.8)		
-										end
-										FF = false
-									elseif FF == true then
-										FF = false
-										game.Workspace[game.Players.LocalPlayer.Name].Torso:Destroy()
-									end
-								end
-							end 
-						end
-					end
-				end
-			end
-			Stopped = false
-		end
-	end
 
-	local Toggle = MainTab:CreateToggle({
+	local Toggle = MM2Tab:CreateToggle({
 		Name = "AutoFarm",
 		CurrentValue = false,
 		Flag = "AutoFarmOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -228,7 +147,7 @@ if game.PlaceId == 142823291 then
 			end
 		end,
 	})
-	local Toggle = MainTab:CreateToggle({
+	local Toggle = MM2Tab:CreateToggle({
 		Name = "ESP",
 		CurrentValue = false,
 		Flag = "ESPOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -284,6 +203,7 @@ if game.PlaceId == 142823291 then
 		end,
 	})
 elseif game.PlaceId == 6456351776 then
+	local MM2Tab = Window:CreateTab("💥MM2", nil) -- Title, Image
 	local MyChar = game.Players.LocalPlayer.Character
 	local plr = game.Players.LocalPlayer
 
@@ -298,7 +218,7 @@ elseif game.PlaceId == 6456351776 then
 	local db = false
 	local Setter = false
 
-	local Toggle = MainTab:CreateToggle({
+	local Toggle = MM2Tab:CreateToggle({
 		Name = "Pumpkin Farm",
 		CurrentValue = false,
 		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
@@ -321,5 +241,18 @@ elseif game.PlaceId == 6456351776 then
 				end
 			end
 		end,
+	})
+
+	local Dropdown = Tab:CreateDropdown({
+  		Name = "Teleports",
+   		Options = {"Bestiary"},
+  		CurrentOption = {"Bestiary"},
+   		MultipleOptions = false,
+   		Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   		Callback = function(Option)
+			if Option == "Bestiary" then
+				plr.Character:PivotTo(Workspace.Scripted.Other.Bestiary.Computer.Proximity.CFrame)
+			end
+   		end,
 	})
 end
