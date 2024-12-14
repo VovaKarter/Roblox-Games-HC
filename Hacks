@@ -210,6 +210,7 @@ elseif game.PlaceId == 6456351776 then
 	local Setter = false
 
 	local Cloned
+	local Connected1
 
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "Pumpkin Farm",
@@ -224,9 +225,17 @@ elseif game.PlaceId == 6456351776 then
 				if plr.PlayerScripts.Core:FindFirstChild("Init") then
 					Cloned = plr.PlayerScripts.Core.Init:Clone()
 					plr.PlayerScripts.Core.Init:Destroy()
+					if not Connected1 then
+						Connected1 = plr.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+							if plr.Character.Humanoid.Health <= 0 then
+								if Cloned then
+									Cloned.Parent = plr.PlayerScripts.Core
+									Connected1:Disconnect()
+								end
+							end
+						end)
+					end
 				end
-			elseif Cloned then
-				Cloned.Parent = plr.PlayerScripts.Core
 			end
 			
 			while Setter do
