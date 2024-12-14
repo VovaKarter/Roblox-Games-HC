@@ -243,7 +243,7 @@ elseif game.PlaceId == 6456351776 then
 		end,
 	})
 
-	local Dropdown = Tab:CreateDropdown({
+	local Dropdown = MM2Tab:CreateDropdown({
   		Name = "Teleports",
    		Options = {"Bestiary"},
   		CurrentOption = {"Bestiary"},
