@@ -1,3 +1,13 @@
+local Player = game.Players[(tostring(script.Parent.Parent.Name))]
+local Character = Player.Character or Player.CharcterAdded:wait()
+local Camera1 = game.Workspace.Camera
+local Haha = Camera1.Parent:WaitForChild("CamPart1")
+
+Camera1.CameraType = Enum.CameraType.Scriptable
+Camera1.CFrame = Haha.CFrame
+
+
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local bb=game:GetService("VirtualUser")
@@ -280,6 +290,43 @@ if game.PlaceId == 142823291 then
 						end
 					end
 				end
+			end
+		end,
+	})
+elseif game.PlaceId == 6456351776 then
+	local MyChar = game.Players.LocalPlayer.Character
+
+	for i,v in pairs(game.Workspace:GetDescendants()) do
+		if v:IsA("LocalScript") or v:IsA("Script") then v:Destroy() end
+	end
+
+	for i,v in pairs(game.Players.LocalPlayer:GetDescendants()) do
+		if v.Name == "Init" then v:Destroy() end
+	end
+
+	MyChar.Humanoid.Health = 1e9
+
+	local db = false
+
+	local Toggle = MainTab:CreateToggle({
+		Name = "Pumpkin Farm",
+		CurrentValue = false,
+		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			while Value do
+				wait()
+				if not Value then db = false return end
+				if db then return end
+				db = true
+				for i,v in pairs(Workspace.Terrain:GetChildren()) do
+					if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
+					if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
+					MyChar:PivotTo(v.MainPart.CFrame)
+					wait(.3)
+					MyChar:PivotTo(Workspace.Workplace.Map.Balcony.Rocks.BigRock.CFrame)
+					wait(.3)
+				end
+				db = false
 			end
 		end,
 	})
