@@ -211,6 +211,7 @@ elseif game.PlaceId == 6456351776 then
 
 	local Cloned
 	local Connected1 = nil
+	local CD = 0
 
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "Pumpkin Farm",
@@ -233,9 +234,36 @@ elseif game.PlaceId == 6456351776 then
 								if Cloned then
 									local New = Cloned:Clone()
 									New.Parent = plr.PlayerScripts.Core
-									Connected1:Disconnect()
-									Connected1 = nil
-									wait(2)
+									if not Setter then
+										Connected1:Disconnect()
+										Connected1 = nil
+									else
+										CD = 10
+										wait(CD)
+										Connected1:Disconnect()
+										Connected1 = nil
+										Connected1 = plr.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+											if plr.Character.Humanoid.Health <= 0 then
+												if Cloned then
+													local New = Cloned:Clone()
+													New.Parent = plr.PlayerScripts.Core
+													if not Setter then
+														Connected1:Disconnect()
+														Connected1 = nil
+													else
+														CD = 10
+														wait(CD)
+														plr.PlayerScripts.Core:WaitForChild("Init"):Destroy()
+														CD = 0
+														db = false
+													end
+												end
+											end
+										end)
+										plr.PlayerScripts.Core:WaitForChild("Init"):Destroy()
+										CD = 0
+										db = false
+									end
 								end
 							end
 						end)
@@ -245,11 +273,11 @@ elseif game.PlaceId == 6456351776 then
 			
 			while Setter do
 				wait()
-				if Setter then
+				if Setter and CD ~= 10 then
 					if db then return end
 					db = true
 					for i,v in pairs(Workspace.Terrain:GetChildren()) do
-						if not Setter then return end
+						if not Setter or CD == 10 then return end
 						if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
 						if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
 						plr.Character:PivotTo(v.MainPart.CFrame)
@@ -267,7 +295,7 @@ elseif game.PlaceId == 6456351776 then
 		Name = "Teleports",
 		Options = {"Nothing", "Bestiary"},
 		CurrentOption = {"Nothing"},
-		MultipleOptions = false,
+		MultipleOptions = true,
 		Flag = nil, -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Option)
 			for i,v in pairs(Option) do
