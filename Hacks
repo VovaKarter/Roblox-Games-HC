@@ -204,7 +204,6 @@ if game.PlaceId == 142823291 then
 	})
 elseif game.PlaceId == 6456351776 then
 	local MM2Tab = Window:CreateTab("💥Kaiju Paradise", nil) -- Title, Image
-	local MyChar = game.Players.LocalPlayer.Character
 	local plr = game.Players.LocalPlayer
 
 	local db = false
@@ -237,9 +236,9 @@ elseif game.PlaceId == 6456351776 then
 						if not Setter then db = false return end
 						if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
 						if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
-						MyChar:PivotTo(v.MainPart.CFrame)
+						plr.Character:PivotTo(v.MainPart.CFrame)
 						wait(.3)
-						MyChar:PivotTo(Workspace.Workplace.Map.Balcony.Rocks.BigRock.CFrame)
+						plr.Character:PivotTo(Workspace.Workplace.Map.Balcony.Rocks.BigRock.CFrame)
 						wait(.3)
 					end
 					db = false
