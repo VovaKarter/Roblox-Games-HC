@@ -303,9 +303,10 @@ elseif game.PlaceId == 6456351776 then
 		CurrentValue = false,
 		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
-			while Value do
+			print(Value, CurrentValue)
+			while CurrentValue do
 				wait()
-				if Value then
+				if CurrentValue then
 					if db then return end
 					db = true
 					for i,v in pairs(Workspace.Terrain:GetChildren()) do
