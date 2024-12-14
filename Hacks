@@ -203,7 +203,7 @@ if game.PlaceId == 142823291 then
 		end,
 	})
 elseif game.PlaceId == 6456351776 then
-	local MM2Tab = Window:CreateTab("💥MM2", nil) -- Title, Image
+	local MM2Tab = Window:CreateTab("💥Kaiju Paradise", nil) -- Title, Image
 	local MyChar = game.Players.LocalPlayer.Character
 	local plr = game.Players.LocalPlayer
 
