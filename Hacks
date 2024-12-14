@@ -207,11 +207,9 @@ elseif game.PlaceId == 6456351776 then
 	local MyChar = game.Players.LocalPlayer.Character
 	local plr = game.Players.LocalPlayer
 
-	for i,v in pairs(game.Workspace:GetDescendants()) do
-		if v:IsA("LocalScript") or v:IsA("Script") then v:Destroy() end
+	if plr.PlayerScripts.Core:FindFirstChild("Init") then
+		plr.PlayerScripts.Core.Init:Destroy()
 	end
-
-	local Cloned
 
 	MyChar.Humanoid.Health = 1e9
 
@@ -225,8 +223,6 @@ elseif game.PlaceId == 6456351776 then
 		Callback = function(Value)
 			Setter = Value
 			if Setter == false then
-				Cloned = plr.PlayerScripts.Core:FindFirstChild("Init"):Clone()
-				plr.PlayerScripts.Core.Init:Destroy()
 				while Setter do
 					wait()
 					if Setter then
@@ -243,8 +239,6 @@ elseif game.PlaceId == 6456351776 then
 						db = false
 					end
 				end
-			else
-				Cloned.Parent = plr.PlayerScripts.Core
 			end
 		end,
 	})
