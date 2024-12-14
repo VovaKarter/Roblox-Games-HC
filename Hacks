@@ -210,7 +210,7 @@ elseif game.PlaceId == 6456351776 then
 	local Setter = false
 
 	local Cloned
-	local Connected1
+	local Connected1 = nil
 
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "Pumpkin Farm",
@@ -231,6 +231,7 @@ elseif game.PlaceId == 6456351776 then
 								if Cloned then
 									Cloned.Parent = plr.PlayerScripts.Core
 									Connected1:Disconnect()
+									Connected1 = nil
 								end
 							end
 						end)
