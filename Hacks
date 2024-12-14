@@ -218,6 +218,8 @@ elseif game.PlaceId == 6456351776 then
 		Callback = function(Value)
 			Setter = Value
 			
+			db = false
+			
 			if Setter then
 				if plr.PlayerScripts.Core:FindFirstChild("Init") then
 					Cloned = plr.PlayerScripts.Core.Init:Clone()
@@ -233,7 +235,7 @@ elseif game.PlaceId == 6456351776 then
 					if db then return end
 					db = true
 					for i,v in pairs(Workspace.Terrain:GetChildren()) do
-						if not Setter then db = false return end
+						if not Setter then return end
 						if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
 						if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
 						plr.Character:PivotTo(v.MainPart.CFrame)
