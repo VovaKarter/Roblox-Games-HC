@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/ChangedRayField'))()
 
 local bb=game:GetService("VirtualUser")
 
@@ -213,6 +213,55 @@ elseif game.PlaceId == 6456351776 then
 	local Connected1 = nil
 	local CD = 0
 
+	local function DelAnti()
+		if plr.PlayerScripts.Core:FindFirstChild("Init") then
+			if not Cloned then
+				Cloned = plr.PlayerScripts.Core.Init:Clone()
+			end
+			plr.PlayerScripts.Core.Init:Destroy()
+			if not Connected1 then
+				Connected1 = plr.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+					if plr.Character.Humanoid.Health <= 0 then
+						if Cloned then
+							local New = Cloned:Clone()
+							New.Parent = plr.PlayerScripts.Core
+							if not Setter then
+								Connected1:Disconnect()
+								Connected1 = nil
+							else
+								CD = 10
+								wait(CD)
+								Connected1:Disconnect()
+								Connected1 = nil
+								Connected1 = plr.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+									if plr.Character.Humanoid.Health <= 0 then
+										if Cloned then
+											local New = Cloned:Clone()
+											New.Parent = plr.PlayerScripts.Core
+											if not Setter then
+												Connected1:Disconnect()
+												Connected1 = nil
+											else
+												CD = 10
+												wait(CD)
+												plr.PlayerScripts.Core:WaitForChild("Init"):Destroy()
+												CD = 0
+												db = false
+											end
+										end
+									end
+								end)
+								plr.PlayerScripts.Core:WaitForChild("Init"):Destroy()
+								CD = 0
+								db = false
+							end
+						end
+					end
+				end)
+			end
+		end
+	end
+
 	local Players = KP:CreateSection("Players")
 
 	local PlrNick
@@ -239,11 +288,11 @@ elseif game.PlaceId == 6456351776 then
 	Joined = game.Players.PlayerAdded:Connect(function(plr)
 		table.clear(ListOfPlrs)
 		ListOfPlrs[1] = "Nothing"
-		
+
 		for i,v in pairs(game.Players:GetChildren()) do
 			ListOfPlrs[#ListOfPlrs+1] = v.Name
 		end
-		
+
 		ListOfPpls:Refresh(ListOfPlrs)
 	end)
 
@@ -285,52 +334,7 @@ elseif game.PlaceId == 6456351776 then
 				plr.Character.HumanoidRootPart.CanCollide = true
 				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = false
 
-				if plr.PlayerScripts.Core:FindFirstChild("Init") then
-					if not Cloned then
-						Cloned = plr.PlayerScripts.Core.Init:Clone()
-					end
-					plr.PlayerScripts.Core.Init:Destroy()
-					if not Connected1 then
-						Connected1 = plr.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
-							if plr.Character.Humanoid.Health <= 0 then
-								if Cloned then
-									local New = Cloned:Clone()
-									New.Parent = plr.PlayerScripts.Core
-									if not Setter then
-										Connected1:Disconnect()
-										Connected1 = nil
-									else
-										CD = 10
-										wait(CD)
-										Connected1:Disconnect()
-										Connected1 = nil
-										Connected1 = plr.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
-											if plr.Character.Humanoid.Health <= 0 then
-												if Cloned then
-													local New = Cloned:Clone()
-													New.Parent = plr.PlayerScripts.Core
-													if not Setter then
-														Connected1:Disconnect()
-														Connected1 = nil
-													else
-														CD = 10
-														wait(CD)
-														plr.PlayerScripts.Core:WaitForChild("Init"):Destroy()
-														CD = 0
-														db = false
-													end
-												end
-											end
-										end)
-										plr.PlayerScripts.Core:WaitForChild("Init"):Destroy()
-										CD = 0
-										db = false
-									end
-								end
-							end
-						end)
-					end
-				end
+				DelAnti()
 			else
 				plr.Character.HumanoidRootPart.CanCollide = false
 				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = true
@@ -369,29 +373,60 @@ elseif game.PlaceId == 6456351776 then
 		end,
 	})
 
+	local Farms = false
+
 	local Toggle2 = KP:CreateToggle({
 		Name = "Kills Farm (SELECT PLAYER)",
 		CurrentValue = false,
 		Flag = nil, -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
-			if CurrState and CurrState == "You" then
-
-			elseif CurrState and CurrState == "Other" and PlrNick then
-
+			Farms = Value
+			
+			if Farms then
+				DelAnti()
+			end
+			
+			while Farms do
+				wait()
+				if not game.Players:FindFirstChild(PlrNick) then return end
+				
+				if CurrState and CurrState == "Other" then
+					plr.Character:PivotTo(game.Players[PlrNick].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-1))
+				elseif CurrState and CurrState == "You" then
+					
+					if plr.PlayerGui.MainGui.InventoryGui:FindFirstChild("1") then
+						if plr.PlayerGui.MainGui.InventoryGui:FindFirstChild("1").Tool.Value == "Attack" then
+							plr.Character:PivotTo(game.Players[PlrNick].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1))
+						else
+							plr.Character:PivotTo(game.Players[PlrNick].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,2))
+						end
+					else
+						plr.Character:PivotTo(game.Players[PlrNick].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,2))
+					end
+				end
 			end
 		end,
 	})
 
 	local FarmSec = KP:CreateSection("Teleports")
 
+	local TpPosition
+
 	local TpDrop = KP:CreateDropdown({
 		Name = "Places",
 		Options = {"Nothing", "Bestiary"},
 		CurrentOption = {"Nothing"},
 		MultipleOptions = false,
-		Flag = nil, -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Flag = "TpPos", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Option)
-			if Option[1] == "Bestiary" then
+			TpPosition = Option[1]
+		end,
+	})
+	
+	local TpButton = KP:CreateButton({
+		Name = "Teleport",
+		Callback = function()
+			if TpPosition and TpPosition == "Bestiary" then
 				plr.Character:PivotTo(Workspace.Scripted.Other.Bestiary.Computer.Proximity.CFrame)
 			end
 		end,
