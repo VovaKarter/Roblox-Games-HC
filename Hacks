@@ -223,6 +223,7 @@ elseif game.PlaceId == 6456351776 then
 			db = false
 
 			if Setter then
+				plr.Character.HumanoidRootPart.CanCollide = true
 				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = false
 				
 				if plr.PlayerScripts.Core:FindFirstChild("Init") then
@@ -272,6 +273,7 @@ elseif game.PlaceId == 6456351776 then
 					end
 				end
 			else
+				plr.Character.HumanoidRootPart.CanCollide = false
 				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = true
 			end
 
@@ -284,7 +286,7 @@ elseif game.PlaceId == 6456351776 then
 						if not Setter or CD == 10 then return end
 						if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
 						if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
-						plr.Character.HumanoidRootPart:PivotTo(v.MainPart.CFrame)
+						plr.Character.HumanoidRootPart:PivotTo(v.MainPart.CFrame + Vector3.new(0,6,0))
 						wait(.3)
 						plr.Character.HumanoidRootPart:PivotTo(Workspace.Workplace.Map.Balcony.Rocks.BigRock.CFrame)
 						wait(.3)
