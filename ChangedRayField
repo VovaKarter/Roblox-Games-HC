@@ -2930,8 +2930,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 							Location = Slider.Main.AbsolutePosition.X + Slider.Main.AbsoluteSize.X
 						end
 
-						if Current < Slider.Main.AbsolutePosition.X + 5 then
-							Current = Slider.Main.AbsolutePosition.X + 5
+						if Current < Slider.Main.AbsolutePosition.X then
+							Current = Slider.Main.AbsolutePosition.X
 						elseif Current > Slider.Main.AbsolutePosition.X + Slider.Main.AbsoluteSize.X then
 							Current = Slider.Main.AbsolutePosition.X + Slider.Main.AbsoluteSize.X
 						end
