@@ -1788,7 +1788,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Dropdown.MouseLeave:Connect(function()
 				TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 			end)
-			
+
 			local function Upd(Option)
 				local DropdownOption = Elements.Template.Dropdown.List.Template:Clone()
 				DropdownOption.Name = Option
@@ -1897,7 +1897,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					Debounce = false	
 					SaveConfiguration()
 				end)
-			end			
+			end
 
 			for _, Option in ipairs(DropdownSettings.Options) do
 				Upd(Option)
