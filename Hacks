@@ -203,7 +203,7 @@ if game.PlaceId == 142823291 then
 		end,
 	})
 elseif game.PlaceId == 6456351776 then
-	local MM2Tab = Window:CreateTab("💥Kaiju Paradise", nil) -- Title, Image
+	local KP = Window:CreateTab("💥Kaiju Paradise", nil) -- Title, Image
 	local plr = game.Players.LocalPlayer
 
 	local db = false
@@ -213,7 +213,66 @@ elseif game.PlaceId == 6456351776 then
 	local Connected1 = nil
 	local CD = 0
 
-	local Toggle = MM2Tab:CreateToggle({
+	local Players = KP:CreateSection("Players")
+
+	local PlrNick
+	local Joined
+	local Left
+
+	local ListOfPlrs = {"Nothing"}
+
+	for i,v in pairs(game.Players:GetChildren()) do
+		ListOfPlrs[#ListOfPlrs+1] = v.Name
+	end
+
+	local ListOfPpls = KP:CreateDropdown({
+		Name = "Players List",
+		Options = ListOfPlrs,
+		CurrentOption = {"Nothing"},
+		MultipleOptions = false,
+		Flag = nil, -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Option) 
+			PlrNick = Option[1]
+		end,
+	})
+
+	Joined = game.Players.PlayerAdded:Connect(function(plr)
+		table.clear(ListOfPlrs)
+		ListOfPlrs[1] = "Nothing"
+		
+		for i,v in pairs(game.Players:GetChildren()) do
+			ListOfPlrs[#ListOfPlrs+1] = v.Name
+		end
+		
+		ListOfPpls:Refresh(ListOfPlrs)
+	end)
+
+	Left = game.Players.PlayerRemoving:Connect(function(plr)
+		--ListOfPlrs:clear()
+		for i,v in pairs(ListOfPlrs) do
+			if v == plr.Name then
+				table.remove(ListOfPlrs, i)
+				if v == ListOfPpls.CurrentOption[1] then
+					ListOfPpls:Set("Nothing")
+				end
+			end
+		end
+
+		ListOfPpls:Refresh(ListOfPlrs)
+		--[[for i,v in pairs(ListOfPlrs) do
+			if v == plr.Name then
+				ListOfPlrs[i] = nil
+				ListOfPpls:Refresh(ListOfPlrs)
+				--[[if v == ListOfPpls.CurrentOption[1] then
+					ListOfPpls:Set("Nothing")
+				end
+			end
+		end--]]
+	end)
+
+	local FarmSec = KP:CreateSection("Farming")
+
+	local Toggle = KP:CreateToggle({
 		Name = "Pumpkin Farm",
 		CurrentValue = false,
 		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
@@ -225,7 +284,7 @@ elseif game.PlaceId == 6456351776 then
 			if Setter then
 				plr.Character.HumanoidRootPart.CanCollide = true
 				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = false
-				
+
 				if plr.PlayerScripts.Core:FindFirstChild("Init") then
 					if not Cloned then
 						Cloned = plr.PlayerScripts.Core.Init:Clone()
@@ -297,17 +356,43 @@ elseif game.PlaceId == 6456351776 then
 		end,
 	})
 
-	local Dropdown = MM2Tab:CreateDropdown({
-		Name = "Teleports",
+	local CurrState
+
+	local KillsDrop = KP:CreateDropdown({
+		Name = "Kills For",
+		Options = {"Nothing", "Other", "You"},
+		CurrentOption = {"Nothing"},
+		MultipleOptions = false,
+		Flag = "KillsForOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Option)
+			CurrState = Option[1]
+		end,
+	})
+
+	local Toggle2 = KP:CreateToggle({
+		Name = "Kills Farm (SELECT PLAYER)",
+		CurrentValue = false,
+		Flag = nil, -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			if CurrState and CurrState == "You" then
+
+			elseif CurrState and CurrState == "Other" and PlrNick then
+
+			end
+		end,
+	})
+
+	local FarmSec = KP:CreateSection("Teleports")
+
+	local TpDrop = KP:CreateDropdown({
+		Name = "Places",
 		Options = {"Nothing", "Bestiary"},
 		CurrentOption = {"Nothing"},
 		MultipleOptions = false,
 		Flag = nil, -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Option)
-			for i,v in pairs(Option) do
-				if v == "Bestiary" then
-					plr.Character:PivotTo(Workspace.Scripted.Other.Bestiary.Computer.Proximity.CFrame)
-				end
+			if Option[1] == "Bestiary" then
+				plr.Character:PivotTo(Workspace.Scripted.Other.Bestiary.Computer.Proximity.CFrame)
 			end
 		end,
 	})
