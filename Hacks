@@ -219,10 +219,12 @@ elseif game.PlaceId == 6456351776 then
 		Flag = "PumpkinFarmOn", -- A flag is the identifier for the configuration file, make sure every element Qhas a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
 			Setter = Value
-			
+
 			db = false
-			
+
 			if Setter then
+				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = false
+				
 				if plr.PlayerScripts.Core:FindFirstChild("Init") then
 					if not Cloned then
 						Cloned = plr.PlayerScripts.Core.Init:Clone()
@@ -269,8 +271,10 @@ elseif game.PlaceId == 6456351776 then
 						end)
 					end
 				end
+			else
+				plr.Character.HumanoidRootPart:FindFirstChild("RootJoint").Enabled = true
 			end
-			
+
 			while Setter do
 				wait()
 				if Setter and CD ~= 10 then
@@ -280,9 +284,9 @@ elseif game.PlaceId == 6456351776 then
 						if not Setter or CD == 10 then return end
 						if v.Name ~= "Pumpkin" or not v:FindFirstChild("MainPart") then continue end
 						if v.MainPart:FindFirstChild("Explode") then v.MainPart.Explode:Destroy() end
-						plr.Character:PivotTo(v.MainPart.CFrame)
+						plr.Character.HumanoidRootPart:PivotTo(v.MainPart.CFrame)
 						wait(.3)
-						plr.Character:PivotTo(Workspace.Workplace.Map.Balcony.Rocks.BigRock.CFrame)
+						plr.Character.HumanoidRootPart:PivotTo(Workspace.Workplace.Map.Balcony.Rocks.BigRock.CFrame)
 						wait(.3)
 					end
 					db = false
