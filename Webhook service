@@ -10,7 +10,9 @@ local headers = {
    ["content-type"] = "application/json"
 }
 
-local function SendMessage(message, fields)
+local WebhookServ = {}
+
+WebhookServ.SendMessage = function(message, fields)
     local data = {
     	['content'] = "",
     	['embeds'] = {{
@@ -30,3 +32,5 @@ local function SendMessage(message, fields)
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
     request(abcdef)
 end
+
+return WebhookServ
