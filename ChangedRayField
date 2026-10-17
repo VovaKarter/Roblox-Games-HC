@@ -1277,7 +1277,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			while true do
 				task.wait(math.random(180, 600))
 				RayfieldLibrary:Notify({
-					Title = "Sirius Iterface",
+					Title = "Sirius Interface",
 					Content = "I appreciate y'all!",
 					Duration = 7,
 					Image = 4370033185,
