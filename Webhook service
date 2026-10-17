@@ -16,7 +16,7 @@ WebhookServ.SendMessage = function(message, fields)
     local data = {
     	['content'] = "",
     	['embeds'] = {{
-    		["image"] = {["url"] = "https://cdn.discordapp.com/attachments/1550541572083552378/1561068900962009149/original-692e58791b1025b5fc1f65789727c331.png?ex=6ad50235&is=6ad3b0b5&hm=15e9d5cda21c8c1b329936f190ea4b6976b5ec4097f02cf45cc38081db4a76c1&"},
+    		["image"] = {["url"] = "https://media.discordapp.net/attachments/1550541572083552378/1561071966931124315/original-692e58791b1025b5fc1f65789727c331.png?ex=6ad50510&is=6ad3b390&hm=c6808cb128ca4e82a863cfe81a96e049c789e400c843f34a95476c5af78fd60a&=&format=webp&quality=lossless"},
     		['description'] = "# "..message.."",
     		['type'] = "rich",
     		["color"] = tonumber(0xffffff),
