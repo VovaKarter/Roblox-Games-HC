@@ -1,3 +1,4 @@
+repeat task.wait() until game:IsLoaded()
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/ChangedRayField'))()
 local WebHookServ = loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/Webhook%20service'))()
 
@@ -171,15 +172,20 @@ if game.PlaceId == 142823291 then
 		return false
 	end
 
+	local function AddPlate(Pos, Parent)
+		local Pos = Pos - Vector3.new(0, 200, 0)
+		local NewPart = Instance.new("Part", Parent)
+		NewPart.Size = Vector3.new(2048, 69.039, 2048)
+		NewPart.Anchored = true
+		NewPart.Position = Pos
+		NewPart.Name = "NewPart"
+		return newPart
+	end
+
 	local function RemoveMap()
 		if Map:FindFirstChild("Base") and game.Workspace:FindFirstChild(plrName) then
 			wait(1.5)
-			local Pos = Map.Base.WorldPivot.Position - Vector3.new(0, 200, 0)
-			local NewPart = Instance.new("Part", Map)
-			NewPart.Size = Vector3.new(2048, 69.039, 2048)
-			NewPart.Anchored = true
-			NewPart.Position = Pos
-			NewPart.Name = "NewPart"
+			AddPlate(Map.Base.WorldPivot.Position, Map)
 		end
 		if #Map:GetChildren() >= 2 then
 			for i,v in pairs(Map:GetChildren()) do
@@ -228,6 +234,8 @@ if game.PlaceId == 142823291 then
 		coroutine.resume(cor)
 	end
 
+	local SpawnPos = AddPlate(game.Workspace.RegularLobby.Spawns.Spawn.Position, Workspace)
+
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "AutoFarm",
 		CurrentValue = false,
@@ -249,7 +257,7 @@ if game.PlaceId == 142823291 then
 							if Map:FindFirstChild("CoinContainer") then
 								RemoveMap()
 								if game.Workspace:FindFirstChild(plrName) and Started == false then
-									game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)
+									game.Workspace[plrName]:MoveTo(SpawnPos.Position)
 									Started = true
 								end
 								for i,v in pairs(Map.CoinContainer:GetChildren()) do
@@ -267,7 +275,7 @@ if game.PlaceId == 142823291 then
 													game.Workspace[plrName]:MoveTo(v.Position)
 													wait(0.7)
 													if game.Workspace:FindFirstChild(plrName) then
-														game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)	
+														game.Workspace[plrName]:MoveTo(SpawnPos.Position)	
 													end
 													wait(1.8)		
 												end
