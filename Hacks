@@ -1,3 +1,5 @@
+task.wait(2)
+
 repeat task.wait() until game:IsLoaded()
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/ChangedRayField'))()
 local WebHookServ = loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/Webhook%20service'))()
@@ -179,7 +181,7 @@ if game.PlaceId == 142823291 then
 		NewPart.Anchored = true
 		NewPart.Position = Pos
 		NewPart.Name = "NewPart"
-		return newPart
+		return NewPart
 	end
 
 	local function RemoveMap()
@@ -243,7 +245,6 @@ if game.PlaceId == 142823291 then
 		Callback = function(Value)
 			AutoFarm = Value
 			PlrMoney = GetNumber(MoneyGui)
-            print(PlrMoney)
 			StartTracker()
 
 			task.spawn(function()
