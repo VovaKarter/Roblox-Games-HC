@@ -152,7 +152,8 @@ if game.PlaceId == 142823291 then
 	local GUIs = plr.PlayerGui
 	local plrName = plr.Name
 
-	local MoneyGui = GUIs:WaitForChild("CrossPlatform"):WaitForChild("Shop").Medium.Title.Coins.Container.Amount
+	local MoneyGui = GUIs:WaitForChild("CrossPlatform"):WaitForChild("Halloween2026").MainEvent.Main.Gifting.Title.Tokens.Container.TextLabel
+	--GUIs:WaitForChild("CrossPlatform"):WaitForChild("Shop").Medium.Title.Coins.Container.Amount
 
 	local PlrMoney = 0
 	local Farmed = 0
@@ -255,7 +256,15 @@ if game.PlaceId == 142823291 then
 		coroutine.resume(cor)
 	end
 
-	local SpawnPos = AddPlate(game.Workspace.RegularLobby.Spawns.Spawn.Position, Workspace)
+	local function FindMap()
+		for i,v in pairs(Workspace:GetChildren()) do
+			if v:FindFirstChild("CoinContainer") then
+				return v
+			end
+		end
+	end
+
+	local SpawnPos = AddPlate(game.Workspace.Lobby.Spawns.Spawn.Position, Workspace)
 
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "AutoFarm",
@@ -270,7 +279,7 @@ if game.PlaceId == 142823291 then
 				while AutoFarm do
 					wait(1)
 					if AutoFarm then
-						Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
+						Map = FindMap()
 						if not Map then
 							Started = false
 						end
@@ -287,7 +296,10 @@ if game.PlaceId == 142823291 then
 									if checkInventory() then continue end
 									if not AutoFarm then break end
 									if not v:FindFirstChild('CoinVisual') then continue end
-									if v.CoinVisual.MainCoin.Transparency == 1 then continue end
+									for i,v in pairs(v.CoinVisual:GetChildren()) do
+										print(v.Name)
+									end
+									--if v.CoinVisual.MainCoin.Transparency == 1 then continue end
 									if game.Workspace:FindFirstChild(plrName) then
 										if GUIs:FindFirstChild("MainGUI") and GUIs.MainGUI:FindFirstChild("Game") then
 											if not v:FindFirstChild("TouchInterest") then continue end
