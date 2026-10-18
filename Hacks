@@ -142,6 +142,9 @@ if game.PlaceId == 142823291 then
 		}
 	}
 
+	local WebHookImage = "https://media.discordapp.net/attachments/1550541572083552378/1561071966931124315/original-692e58791b1025b5fc1f65789727c331.png?ex=6ad50510&is=6ad3b390&hm=c6808cb128ca4e82a863cfe81a96e049c789e400c843f34a95476c5af78fd60a&=&format=webp&quality=lossless"
+	local BorderColor = tonumber(0xC522EE)
+
 	local MM2Tab = Window:CreateTab("💥MM2", nil) -- Title, Image
 	local GmName = MM2Tab:CreateSection("Murder Mystery 2")
 
@@ -232,7 +235,7 @@ if game.PlaceId == 142823291 then
 		local cor = coroutine.create(function()
 			while task.wait(.1) do
 				if not AutoFarm then break end
-				if os.date("*t")["hour"] ~= lastH and os.date("*t")["min"] then
+				if os.date("*t")["hour"] ~= lastH and os.date("*t")["min"] == 0 then
 					lastH = os.date("*t")["hour"]
 					local MoneyRes = GetNumber(MoneyGui)
 					local MoneyDiff = MoneyRes - PlrMoney
@@ -244,7 +247,7 @@ if game.PlaceId == 142823291 then
 					fields[3].value = Farmed//TotalH
 					fields[4].value = PlrMoney
 					fields[5].value = MakeDataStr(os.date("*t"))
-					WebHookServ.SendMessage("Hourly report for "..plrName, fields)
+					WebHookServ.SendMessage("Hourly report for "..plrName, fields, {url = WebHookImage, bordercolor = BorderColor})
 				end
 			end
 		end)
