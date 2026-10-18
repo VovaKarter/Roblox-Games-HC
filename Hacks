@@ -258,7 +258,7 @@ if game.PlaceId == 142823291 then
 
 	local function FindMap()
 		for i,v in pairs(Workspace:GetChildren()) do
-			if v:FindFirstChild("Spawns") and v.Name ~= "Lobby" then
+			if (v:FindFirstChild("Spawns") and v.Name ~= "Lobby") or v:FindFirstChild("Container") then
 				return v
 			end
 		end
