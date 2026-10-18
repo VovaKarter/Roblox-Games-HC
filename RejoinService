@@ -1,10 +1,6 @@
 -- Not my own service
 -- Original owner is XAn but I rewrote this script a little to suit my needs.
 
-task.wait(3)
-
-repeat task.wait() until game:IsLoaded()
-
 local TeleportService = game:GetService('TeleportService')
 local HttpService = game:GetService('HttpService')
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
