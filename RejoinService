@@ -196,12 +196,12 @@ promptOverlay.ChildAdded:Connect(function(Child)
     end
 end)
 
-if #game.Players:GetChildren() <= 3 then
+if #game.Players:GetChildren() <= 1 then
     teleportToBackup()
 end
 
 game.Players.PlayerRemoving:Connect(function()
-    if #game.Players:GetChildren() <= 3 then
+    if #game.Players:GetChildren() <= 1 then
         teleportToBackup()
     end
 end)
