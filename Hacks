@@ -135,7 +135,7 @@ if game.PlaceId == 142823291 then
 	local GUIs = plr.PlayerGui
 	local plrName = plr.Name
 
-	local MoneyGui = GUIs.CrossPlatform.Shop.Medium.Title.Coins.Container.Amount
+	local MoneyGui = GUIs:WaitForChild("CrossPlatform"):WaitForChild("Shop").Medium.Title.Coins.Container.Amount
 
 	local PlrMoney = 0
 	local lastH = os.date("*t")["hour"]
