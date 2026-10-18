@@ -67,12 +67,13 @@ local function findAvailableServer()
                 end
                 num = num + 1
             end
-            
+
             if Possible == true and num2 >= AccNum then
                 return ID
+            elseif Possible == true then
+                num2 += 1
             end
         end
-        num2 += 1
     end
     
     return nil
