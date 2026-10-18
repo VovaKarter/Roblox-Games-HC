@@ -116,18 +116,28 @@ if game.PlaceId == 142823291 then
 
 	local fields = {
     	{
-    	    ['name'] = "Coins earned:",
+    	    ['name'] = "Value earned:",
+			['value'] = 0,
+			['inline'] = true
+		},
+		{
+			['name'] = "Session earnings:",
+			['value'] = 0,
+			['inline'] = true
+		},
+		{
+			['name'] = "AVG:",
+			['value'] = 0,
+			['inline'] = true
+		},
+		{
+			['name'] = "Curr value:",
 			['value'] = 0,
 			['inline'] = true
 		},
 		{
 			['name'] = "Time:",
 			['value'] = os.date("*t")["hour"]..":"..os.date("*t")["min"]..":"..os.date("*t")["sec"],
-			['inline'] = true
-		},
-		{
-			['name'] = "Total coins:",
-			['value'] = 0,
 			['inline'] = true
 		}
 	}
@@ -142,6 +152,8 @@ if game.PlaceId == 142823291 then
 	local MoneyGui = GUIs:WaitForChild("CrossPlatform"):WaitForChild("Shop").Medium.Title.Coins.Container.Amount
 
 	local PlrMoney = 0
+	local Farmed = 0
+	local TotalH = 0
 	local lastH = os.date("*t")["hour"]
 	local AutoFarm
 	local ESP
@@ -225,9 +237,13 @@ if game.PlaceId == 142823291 then
 					local MoneyRes = GetNumber(MoneyGui)
 					local MoneyDiff = MoneyRes - PlrMoney
 					PlrMoney = MoneyRes
+					Farmed += MoneyDiff
+					TotalH += 1
 					fields[1].value = MoneyDiff
-					fields[2].value = MakeDataStr(os.date("*t"))
-					fields[3].value = PlrMoney
+					fields[2].value = Farmed
+					fields[3].value = Farmed//TotalH
+					fields[4].value = PlrMoney
+					fields[5].value = MakeDataStr(os.date("*t"))
 					WebHookServ.SendMessage("Hourly report for "..plrName, fields)
 				end
 			end
@@ -256,13 +272,14 @@ if game.PlaceId == 142823291 then
 							Started = false
 						end
 						if Map then
-							if Map:FindFirstChild("CoinContainer") then
+							if not GUIs:FindFirstChild("MainGUI") then continue end
+							if GUIs:FindFirstChild("MainGUI").Game.Waiting and GUIs:FindFirstChild("MainGUI").Game.Waiting.Visible == true then continue end
+							if game.Workspace:FindFirstChild(plrName) and Started == false then
+								game.Workspace[plrName]:MoveTo(SpawnPos.Position)
+								Started = true
 								RemoveMap()
-								if GUIs:FindFirstChild("MainGUI").Game.Waiting and GUIs:FindFirstChild("MainGUI").Game.Waiting.Visible == true then continue end
-								if game.Workspace:FindFirstChild(plrName) and Started == false then
-									game.Workspace[plrName]:MoveTo(SpawnPos.Position)
-									Started = true
-								end
+							end
+							if Map:FindFirstChild("CoinContainer") then
 								for i,v in pairs(Map.CoinContainer:GetChildren()) do
 									if checkInventory() then continue end
 									if not AutoFarm then break end
@@ -273,14 +290,13 @@ if game.PlaceId == 142823291 then
 											if not v:FindFirstChild("TouchInterest") then continue end
 											if GUIs.MainGUI.Game:FindFirstChild("CoinBags") then
 												if checkInventory() then continue end
-
 												if game.Workspace:FindFirstChild(plrName) then
 													game.Workspace[plrName]:MoveTo(v.Position)
-													wait(0.7)
+													wait(.7)
 													if game.Workspace:FindFirstChild(plrName) then
-														game.Workspace[plrName]:MoveTo(SpawnPos.Position)	
+														game.Workspace[plrName]:MoveTo(SpawnPos.Position)
 													end
-													wait(1.8)		
+													wait(1.8)
 												end
 											end 
 										end
