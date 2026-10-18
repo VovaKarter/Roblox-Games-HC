@@ -46,6 +46,11 @@ local function SendWebHook(msg)
     WebHookServ.SendMessage(msg, fields, {url = WebHookImage, bordercolor = BorderColor})
 end
 
+if TeleportService:GetLocalPlayerTeleportData() ~= nil then
+    BorderColor = tonumber(0x40e916)
+    SendWebHook("Successfully reconnected after "..TeleportService:GetLocalPlayerTeleportData()[1].." retry")
+end
+
 local function teleportToBackup()
     if isKicked then return end
     isKicked = true
@@ -55,12 +60,9 @@ local function teleportToBackup()
     BorderColor = tonumber(0xcf1818)
     SendWebHook("Session for "..LocalPlayer.Name.." has finished")
 
-    local succ = pcall(TeleportService:Teleport(placeId))
+    local succ = pcall(TeleportService:Teleport(placeId, LocalPlayer, SendTries))
 
-    if succ then
-        BorderColor = tonumber(0x40e916)
-        SendWebHook("Successfully reconnected after "..SendTries.." retry")
-    else
+    if not succ then
         BorderColor = tonumber(0xcf1818)
         SendWebHook("Error: can't reconnect (retry: "..SendTries..")")
     end
@@ -69,11 +71,8 @@ local function teleportToBackup()
         wait(1)
         SendTries += 1
         SendWebHook("Error: can't reconnect (retry: "..SendTries..")")
-        succ = pcall(TeleportService:Teleport(placeId))
+        succ = pcall(TeleportService:Teleport(placeId, LocalPlayer, SendTries))
     until succ
-
-    BorderColor = tonumber(0x40e916)
-    SendWebHook("Successfully reconnected after "..SendTries.." retry")
 end
 
 repeat task.wait() until CoreGui:FindFirstChild('RobloxPromptGui')
