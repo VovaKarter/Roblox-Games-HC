@@ -46,15 +46,17 @@ local NoClip = MainTab:CreateToggle({
 	Callback = function(Value)
 		NoClipState = Value
 
-		while NoClipState do
-			wait()
-			for i, v in pairs(workspace[game.Players.LocalPlayer.Name]:GetChildren()) do
-				if not NoClipState then return end
-				if v:IsA("BasePart") then
-					v.CanCollide = false
+		task.spawn(function()
+			while NoClipState do
+				wait()
+				for i, v in pairs(workspace[game.Players.LocalPlayer.Name]:GetChildren()) do
+					if not NoClipState then return end
+					if v:IsA("BasePart") then
+						v.CanCollide = false
+					end
 				end
 			end
-		end
+		end)
 	end,
 })
 
@@ -294,7 +296,7 @@ if game.PlaceId == 142823291 then
 						Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
 						for i,v in pairs(game.Players:GetChildren()) do
 							if not workspace:FindFirstChild(v.Name) then continue end
-						
+
 							if v.Backpack:FindFirstChild("Knife") then
 								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
 									local AddHigh = Instance.new("Highlight")
