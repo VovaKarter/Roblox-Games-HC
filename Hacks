@@ -235,47 +235,49 @@ if game.PlaceId == 142823291 then
 			PlrMoney = GetNumber(MoneyGui)
 			StartTracker()
 
-			while AutoFarm do
-				wait(1)
-				if AutoFarm then
-					Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
-					if not Map then
-						Started = false
-					end
-					if Map then
-						if game.Workspace:FindFirstChild(plrName) and Started == false then
-							game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)
-							Started = true
+			task.spawn(function()
+				while AutoFarm do
+					wait(1)
+					if AutoFarm then
+						Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
+						if not Map then
+							Started = false
 						end
-						if Map:FindFirstChild("CoinContainer") then
-							RemoveMap()
-							for i,v in pairs(Map.CoinContainer:GetChildren()) do
-								if checkInventory() then continue end
-								if not AutoFarm then break end
-								if not v:FindFirstChild('CoinVisual') then continue end
-								if v.CoinVisual.MainCoin.Transparency == 1 then continue end
-								if game.Workspace:FindFirstChild(plrName) then
-									if GUIs:FindFirstChild("MainGUI") and GUIs.MainGUI:FindFirstChild("Game") then
-										if not v:FindFirstChild("TouchInterest") then continue end
-										if GUIs.MainGUI.Game:FindFirstChild("CoinBags") then
-											if checkInventory() then continue end
-											
-											if game.Workspace:FindFirstChild(plrName) then
-												game.Workspace[plrName]:MoveTo(v.Position)
-												wait(0.7)
+						if Map then
+							if game.Workspace:FindFirstChild(plrName) and Started == false then
+								game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)
+								Started = true
+							end
+							if Map:FindFirstChild("CoinContainer") then
+								RemoveMap()
+								for i,v in pairs(Map.CoinContainer:GetChildren()) do
+									if checkInventory() then continue end
+									if not AutoFarm then break end
+									if not v:FindFirstChild('CoinVisual') then continue end
+									if v.CoinVisual.MainCoin.Transparency == 1 then continue end
+									if game.Workspace:FindFirstChild(plrName) then
+										if GUIs:FindFirstChild("MainGUI") and GUIs.MainGUI:FindFirstChild("Game") then
+											if not v:FindFirstChild("TouchInterest") then continue end
+											if GUIs.MainGUI.Game:FindFirstChild("CoinBags") then
+												if checkInventory() then continue end
+
 												if game.Workspace:FindFirstChild(plrName) then
-													game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)	
+													game.Workspace[plrName]:MoveTo(v.Position)
+													wait(0.7)
+													if game.Workspace:FindFirstChild(plrName) then
+														game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)	
+													end
+													wait(1.8)		
 												end
-												wait(1.8)		
-											end
-										end 
+											end 
+										end
 									end
 								end
 							end
 						end
 					end
 				end
-			end
+			end)
 		end,
 	})
 	local Toggle = MM2Tab:CreateToggle({
@@ -285,57 +287,59 @@ if game.PlaceId == 142823291 then
 		Callback = function(Value)
 			ESP = Value
 
-			while ESP do
-				wait(1)
-				if ESP then
-					Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
-					for i,v in pairs(game.Players:GetChildren()) do
-						if not workspace:FindFirstChild(v.Name) then continue end
-
-						if v.Backpack:FindFirstChild("Knife") then
-							if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-								local AddHigh = Instance.new("Highlight")
-								AddHigh.Parent = game.Workspace[tostring(v.Name)]
-								AddHigh.DepthMode = "AlwaysOnTop"
-								AddHigh.Name = "LOL"
+			task.spawn(function()
+				while ESP do
+					wait(1)
+					if ESP then
+						Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
+						for i,v in pairs(game.Players:GetChildren()) do
+							if not workspace:FindFirstChild(v.Name) then continue end
+						
+							if v.Backpack:FindFirstChild("Knife") then
+								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+									local AddHigh = Instance.new("Highlight")
+									AddHigh.Parent = game.Workspace[tostring(v.Name)]
+									AddHigh.DepthMode = "AlwaysOnTop"
+									AddHigh.Name = "LOL"
+								end
+							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
+								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+									local AddHigh = Instance.new("Highlight")
+									AddHigh.Parent = game.Workspace[tostring(v.Name)]
+									AddHigh.DepthMode = "AlwaysOnTop"
+									AddHigh.Name = "LOL"
+								end
 							end
-						elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
-							if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-								local AddHigh = Instance.new("Highlight")
-								AddHigh.Parent = game.Workspace[tostring(v.Name)]
-								AddHigh.DepthMode = "AlwaysOnTop"
-								AddHigh.Name = "LOL"
+							if v.Backpack:FindFirstChild("Gun") then
+								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+									local AddHigh = Instance.new("Highlight")
+									AddHigh.Parent = game.Workspace[tostring(v.Name)]
+									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+									AddHigh.DepthMode = "AlwaysOnTop"
+									AddHigh.Name = "LOL"
+								end
+							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Gun") then
+								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
+									local AddHigh = Instance.new("Highlight")
+									AddHigh.Parent = game.Workspace[tostring(v.Name)]
+									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+									AddHigh.DepthMode = "AlwaysOnTop"
+									AddHigh.Name = "LOL"
+								end
 							end
-						end
-						if v.Backpack:FindFirstChild("Gun") then
-							if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-								local AddHigh = Instance.new("Highlight")
-								AddHigh.Parent = game.Workspace[tostring(v.Name)]
-								AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-								AddHigh.DepthMode = "AlwaysOnTop"
-								AddHigh.Name = "LOL"
-							end
-						elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Gun") then
-							if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-								local AddHigh = Instance.new("Highlight")
-								AddHigh.Parent = game.Workspace[tostring(v.Name)]
-								AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-								AddHigh.DepthMode = "AlwaysOnTop"
-								AddHigh.Name = "LOL"
-							end
-						end
-						if Map and Map:FindFirstChild("GunDrop") then
-							if not Map.GunDrop:FindFirstChild("LOL") then
-								local AddHigh = Instance.new("Highlight")
-								AddHigh.Parent = game.Workspace.GunDrop
-								AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-								AddHigh.DepthMode = "AlwaysOnTop"
-								AddHigh.Name = "LOL"
+							if Map and Map:FindFirstChild("GunDrop") then
+								if not Map.GunDrop:FindFirstChild("LOL") then
+									local AddHigh = Instance.new("Highlight")
+									AddHigh.Parent = game.Workspace.GunDrop
+									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
+									AddHigh.DepthMode = "AlwaysOnTop"
+									AddHigh.Name = "LOL"
+								end
 							end
 						end
 					end
 				end
-			end
+			end)
 		end,
 	})
 elseif game.PlaceId == 6456351776 then
