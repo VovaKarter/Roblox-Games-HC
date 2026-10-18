@@ -19,7 +19,9 @@ local function teleportToBackup()
     if isKicked then return end
     isKicked = true
 
-    TeleportService:Teleport(placeId)
+    local succ = pcall(TeleportService:Teleport(placeId))
+    
+    repeat wait(1) succ = pcall(TeleportService:Teleport(placeId)) until succ
 end
 
 repeat task.wait() until CoreGui:FindFirstChild('RobloxPromptGui')
