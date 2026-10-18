@@ -17,9 +17,9 @@ local placeId = game.PlaceId
 local AllIDs = {}
 local foundAnything = ""
 local actualHour = os.date("!*t").hour
-local isBloxFruits = ReplicatedStorage:FindFirstChild("__ServerBrowser") ~= nil
 local backupServerId = nil
 local isKicked = false
+local AccNum = 0
 
 local File = pcall(function()
     AllIDs = HttpService:JSONDecode(readfile("server-hop-temp.json"))
@@ -44,14 +44,12 @@ local function findAvailableServer()
     end
     
     local num = 0
+    local num2 = 0
     for i, v in pairs(Site.data) do
         local Possible = true
         local ID = tostring(v.id)
         
-        if tonumber(v.maxPlayers) > tonumber(v.playing) then
-            if ID == game.JobId and isBloxFruits then
-                Possible = false
-            end
+        if tonumber(v.maxPlayers) > tonumber(v.playing) and tonumber(v.ping) <= 120 then
             
             for _, Existing in pairs(AllIDs) do
                 if num ~= 0 then
@@ -70,10 +68,11 @@ local function findAvailableServer()
                 num = num + 1
             end
             
-            if Possible == true then
+            if Possible == true and num >= AccNum then
                 return ID
             end
         end
+        num2 += 1
     end
     
     return nil
@@ -92,8 +91,11 @@ local function updateBackupServer()
             return true
         end
     end
-    backupServerId = nil
-    return false
+    if not backupServerId then
+        backupServerId = nil
+        return false
+    end
+    return true
 end
 
 local function showNotice(text, duration)
@@ -145,7 +147,7 @@ end
 local function teleportToBackup()
     if isKicked then return end
     isKicked = true
-    
+
     if not backupServerId then
         showNotice("No servers available!!", 10)
         return
@@ -156,14 +158,7 @@ local function teleportToBackup()
         writefile("server-hop-temp.json", HttpService:JSONEncode(AllIDs))
     end)
     
-    if isBloxFruits then
-        local sb = ReplicatedStorage:FindFirstChild("__ServerBrowser")
-        if sb then
-            sb:InvokeServer("teleport", backupServerId)
-        end
-    else
-        TeleportService:TeleportToPlaceInstance(placeId, backupServerId, LocalPlayer)
-    end
+    TeleportService:TeleportToPlaceInstance(placeId, backupServerId, LocalPlayer)
 end
 
 updateBackupServer()
@@ -206,6 +201,18 @@ game.Players.PlayerRemoving:Connect(function()
     end
 end)
 
+local Sc = Instance.new("ScreenGui", CoreGui)
+local Button = Instance.new("TextButton", Sc)
+Button.Size = UDim2.new(.3, 0, .3, 0)
+Button.BackgroundTransparency = .5
+Button.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+Button.Text = "Rejoin button"
+
+Button.MouseButton1Click:Connect(function()
+    print("Teleport started")
+    teleportToBackup()
+end)
+
 task.spawn(function()
     while not isKicked do
         if not LocalPlayer:IsDescendantOf(game) then
@@ -215,3 +222,11 @@ task.spawn(function()
         task.wait(1)
     end
 end)
+
+local RejoinService = {}
+
+RejoinService.SetAccNumber = function(number)
+    AccNum = number
+end
+
+return RejoinService
