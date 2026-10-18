@@ -153,8 +153,6 @@ if game.PlaceId == 142823291 then
 
 		return tonumber(finalNumber)
 	end
-	
-	PlrMoney = GetNumber(MoneyGui)
 
 	local function resetIfMurder()
 		if plr.Backpack:FindFirstChild("Knife") then
@@ -234,6 +232,7 @@ if game.PlaceId == 142823291 then
 		Flag = "AutoFarmOn", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
 			AutoFarm = Value
+			PlrMoney = GetNumber(MoneyGui)
 			StartTracker()
 
 			while AutoFarm do
