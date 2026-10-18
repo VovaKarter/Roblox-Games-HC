@@ -68,7 +68,7 @@ local function findAvailableServer()
                 num = num + 1
             end
             
-            if Possible == true and num >= AccNum then
+            if Possible == true and num2 >= AccNum then
                 return ID
             end
         end
@@ -227,6 +227,7 @@ local RejoinService = {}
 
 RejoinService.SetAccNumber = function(number)
     AccNum = number
+    updateBackupServer()
 end
 
 return RejoinService
