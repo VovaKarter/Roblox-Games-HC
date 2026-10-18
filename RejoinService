@@ -21,7 +21,7 @@ local fields = {
 }
 
 local BorderColor = tonumber(0xcf1818)
-local WebHookImage = ""
+local WebHookImage = "https://media.discordapp.net/attachments/1004155077994496080/1325912317459697694/petpet.gif?ex=6ad5c9d2&is=6ad47852&hm=a5756f2f64666fafdb9c4864809a2a7af2d109c7c80e7034a965c14d067fb90a&="
 local SendTries = 0
 
 local function MakeDataStr(time)
@@ -48,7 +48,7 @@ end
 
 if TeleportService:GetLocalPlayerTeleportData() ~= nil then
     BorderColor = tonumber(0x40e916)
-    SendWebHook("Successfully reconnected after "..TeleportService:GetLocalPlayerTeleportData().." retry")
+    SendWebHook("Session for "..LocalPlayer.Name.." successfully restarted after retry: "..TeleportService:GetLocalPlayerTeleportData())
 end
 
 local function teleportToBackup()
