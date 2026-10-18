@@ -258,7 +258,7 @@ if game.PlaceId == 142823291 then
 
 	local function FindMap()
 		for i,v in pairs(Workspace:GetChildren()) do
-			if v:FindFirstChild("CoinContainer") then
+			if v:FindFirstChild("Spawns") and v.Name ~= "Lobby" then
 				return v
 			end
 		end
@@ -296,10 +296,7 @@ if game.PlaceId == 142823291 then
 									if checkInventory() then continue end
 									if not AutoFarm then break end
 									if not v:FindFirstChild('CoinVisual') then continue end
-									for i,v in pairs(v.CoinVisual:GetChildren()) do
-										print(v.Name)
-									end
-									--if v.CoinVisual.MainCoin.Transparency == 1 then continue end
+									if v.CoinVisual.Transparency == 1 then continue end
 									if game.Workspace:FindFirstChild(plrName) then
 										if GUIs:FindFirstChild("MainGUI") and GUIs.MainGUI:FindFirstChild("Game") then
 											if not v:FindFirstChild("TouchInterest") then continue end
