@@ -256,6 +256,7 @@ if game.PlaceId == 142823291 then
 						if Map then
 							if Map:FindFirstChild("CoinContainer") then
 								RemoveMap()
+								if GUIs:FindFirstChild("MainGUI").Game.Waiting and GUIs:FindFirstChild("MainGUI").Game.Waiting.Visible == true then continue end
 								if game.Workspace:FindFirstChild(plrName) and Started == false then
 									game.Workspace[plrName]:MoveTo(SpawnPos.Position)
 									Started = true
