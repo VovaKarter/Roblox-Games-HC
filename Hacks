@@ -243,6 +243,7 @@ if game.PlaceId == 142823291 then
 		Callback = function(Value)
 			AutoFarm = Value
 			PlrMoney = GetNumber(MoneyGui)
+            print(PlrMoney)
 			StartTracker()
 
 			task.spawn(function()
