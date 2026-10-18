@@ -258,7 +258,7 @@ if game.PlaceId == 142823291 then
 
 	local function FindMap()
 		for i,v in pairs(Workspace:GetChildren()) do
-			if (v:FindFirstChild("Spawns") and v.Name ~= "Lobby") or v:FindFirstChild("Container") then
+			if v:FindFirstChild("Spawns") and v.Name ~= "Lobby" or v:FindFirstChild("CoinContainer") then
 				return v
 			end
 		end
@@ -280,6 +280,7 @@ if game.PlaceId == 142823291 then
 					wait(1)
 					if AutoFarm then
 						Map = FindMap()
+						print(Map)
 						if not Map then
 							Started = false
 						end
