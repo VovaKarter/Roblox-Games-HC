@@ -107,7 +107,6 @@ if game.PlaceId == 142823291 then
 	end)
 	task.spawn(function()
 		AutoRejoin = loadstring(game:HttpGet("https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/RejoinService", true))() 
-		AutoRejoin.SetAccNumber(0)
 	end)
 
 	local fields = {
@@ -337,21 +336,6 @@ if game.PlaceId == 142823291 then
 						end
 					end
 				end
-			end
-		end,
-	})
-
-	local Input = MM2Tab:CreateInput({
-		Name = "Account number",
-		CurrentValue = "",
-		PlaceholderText = "Set number of curr account. Standart value 0",
-		RemoveTextAfterFocusLost = false,
-		Flag = 'InputExample',
-		Callback = function(Text)
-			local success, GotNumber = pcall(tonumber(Text))
-			if success then
-				repeat task.wait() until AutoRejoin
-				AutoRejoin.SetAccNumber(GotNumber)
 			end
 		end,
 	})
