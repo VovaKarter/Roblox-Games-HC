@@ -94,18 +94,6 @@ game.Players.PlayerRemoving:Connect(function()
     end
 end)
 
-local Sc = Instance.new("ScreenGui", CoreGui)
-local Button = Instance.new("TextButton", Sc)
-Button.Size = UDim2.new(.3, 0, .3, 0)
-Button.BackgroundTransparency = .5
-Button.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
-Button.Text = "Rejoin button"
-
-Button.MouseButton1Click:Connect(function()
-    print("Teleport started")
-    teleportToBackup()
-end)
-
 task.spawn(function()
     while not isKicked do
         if not LocalPlayer:IsDescendantOf(game) then
