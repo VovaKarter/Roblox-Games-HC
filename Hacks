@@ -246,12 +246,12 @@ if game.PlaceId == 142823291 then
 							Started = false
 						end
 						if Map then
-							if game.Workspace:FindFirstChild(plrName) and Started == false then
-								game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)
-								Started = true
-							end
 							if Map:FindFirstChild("CoinContainer") then
 								RemoveMap()
+								if game.Workspace:FindFirstChild(plrName) and Started == false then
+									game.Workspace[plrName]:MoveTo(game.Workspace.RegularLobby.Spawns.Spawn.Position)
+									Started = true
+								end
 								for i,v in pairs(Map.CoinContainer:GetChildren()) do
 									if checkInventory() then continue end
 									if not AutoFarm then break end
