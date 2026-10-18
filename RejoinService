@@ -1,12 +1,9 @@
+-- Not my own service
+-- Original owner is XAn but I rewrote this script a little to suit my needs.
+
 task.wait(3)
 
 repeat task.wait() until game:IsLoaded()
-
-game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Auto Reconnect";
-    Text = "Made By XAn.";
-    Duration = 5;
-})
 
 local TeleportService = game:GetService('TeleportService')
 local HttpService = game:GetService('HttpService')
@@ -195,6 +192,16 @@ local promptOverlay = CoreGui.RobloxPromptGui.promptOverlay
 
 promptOverlay.ChildAdded:Connect(function(Child)
     if Child.Name == 'ErrorPrompt' and not isKicked then
+        teleportToBackup()
+    end
+end)
+
+if #game.Players:GetChildren() <= 3 then
+    teleportToBackup()
+end
+
+game.Players.PlayerRemoving:Connect(function()
+    if #game.Players:GetChildren() <= 3 then
         teleportToBackup()
     end
 end)
