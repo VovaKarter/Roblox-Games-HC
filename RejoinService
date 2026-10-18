@@ -1,6 +1,7 @@
 -- Not my own service
 -- Original owner is XAn but I rewrote this script a little to suit my needs.
 
+local WebHookServ = loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/Webhook%20service'))()
 local TeleportService = game:GetService('TeleportService')
 local HttpService = game:GetService('HttpService')
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
@@ -11,13 +12,68 @@ local CoreGui = game:GetService('CoreGui')
 local placeId = game.PlaceId
 local isKicked = false
 
+local fields = {
+	{
+		['name'] = "Time:",
+		['value'] = os.date("*t")["hour"]..":"..os.date("*t")["min"]..":"..os.date("*t")["sec"],
+		['inline'] = true
+	}
+}
+
+local BorderColor = tonumber(0xcf1818)
+local WebHookImage = ""
+local SendTries = 0
+
+local function MakeDataStr(time)
+	local hours = time["hour"]
+	local mins = time["min"]
+	local sec = time["sec"]
+
+	if #tostring(hours) == 1 then
+		hours = "0"..hours
+	end
+	if #tostring(mins) == 1 then
+		mins = "0"..mins
+	end
+	if #tostring(sec) == 1 then
+		sec = "0"..sec
+	end
+	return hours..":"..mins..":"..sec
+end
+
+local function SendWebHook(msg)
+    fields[1].value = MakeDataStr(os.date("*t"))
+    WebHookServ.SendMessage(msg, fields, {url = WebHookImage, bordercolor = BorderColor})
+end
+
 local function teleportToBackup()
     if isKicked then return end
     isKicked = true
 
+    SendTries += 1
+
+    BorderColor = tonumber(0xcf1818)
+    SendWebHook("Session for "..LocalPlayer.Name.." has finished")
+
     local succ = pcall(TeleportService:Teleport(placeId))
+
+    if succ then
+        BorderColor = tonumber(0x40e916)
+        SendWebHook("Successfully reconnected after "..SendTries.." retry")
+    else
+        BorderColor = tonumber(0xcf1818)
+        SendWebHook("Error: can't reconnect (retry: "..SendTries..")")
+    end
     
-    repeat wait(1) succ = pcall(TeleportService:Teleport(placeId)) until succ
+    repeat 
+        wait(1)
+        SendTries += 1
+        SendWebHook("Error: can't reconnect (retry: "..SendTries..")")
+        succ = pcall(TeleportService:Teleport(placeId))
+    until succ
+
+    BorderColor = tonumber(0x40e916)
+    SendWebHook("Successfully reconnected after "..SendTries.." retry")
 end
 
 repeat task.wait() until CoreGui:FindFirstChild('RobloxPromptGui')
