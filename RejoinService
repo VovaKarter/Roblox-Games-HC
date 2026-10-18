@@ -48,7 +48,7 @@ end
 
 if TeleportService:GetLocalPlayerTeleportData() ~= nil then
     BorderColor = tonumber(0x40e916)
-    SendWebHook("Successfully reconnected after "..TeleportService:GetLocalPlayerTeleportData()[1].." retry")
+    SendWebHook("Successfully reconnected after "..TeleportService:GetLocalPlayerTeleportData().." retry")
 end
 
 local function teleportToBackup()
