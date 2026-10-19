@@ -9,6 +9,13 @@ local Players = game:GetService('Players')
 local LocalPlayer = Players.LocalPlayer
 local CoreGui = game:GetService('CoreGui')
 
+function missing(t, f, fallback)
+	if type(f) == t then return f end
+	return fallback
+end
+
+queueteleport =  missing("function", queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport))
+
 local placeId = game.PlaceId
 local isKicked = false
 
@@ -59,6 +66,10 @@ local function teleportToBackup()
 
     BorderColor = tonumber(0xcf1818)
     SendWebHook("Session for "..LocalPlayer.Name.." has finished")
+
+    if queueteleport then
+        queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/VovaKarter/Roblox-Games-HC/refs/heads/main/Hacks'))()")
+    end
 
     local succ = pcall(TeleportService:Teleport(placeId, LocalPlayer, SendTries))
 
