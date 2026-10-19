@@ -107,7 +107,7 @@ end)
 
 task.spawn(function()
     while not isKicked do
-        if not LocalPlayer:IsDescendantOf(game) then
+        if not LocalPlayer:IsDescendantOf(game) or _G.Test then
             teleportToBackup()
             break
         end
