@@ -176,7 +176,7 @@ if game.PlaceId == 142823291 then
 	end
 
 	local function resetIfMurder()
-		if not plr:FindFirstChild("Backpack") then return
+		if not plr:FindFirstChild("Backpack") then return end
 		if plr.Backpack:FindFirstChild("Knife") then
 			if plr.Character and plr.Character:FindFirstChild("Humanoid") then
 				plr.Character:BreakJoints()
