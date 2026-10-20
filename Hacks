@@ -265,6 +265,18 @@ if game.PlaceId == 142823291 then
 		end
 	end
 
+	local function AddHighlight(color, parent)
+		if not parent:FindFirstChild("Lighter") then
+			local AddHigh = Instance.new("Highlight")
+			AddHigh.Parent = parent
+			AddHigh.DepthMode = "AlwaysOnTop"
+			AddHigh.Name = "Lighter"
+			if color then
+				AddHigh.FillColor = color
+			end
+		end
+	end
+
 	local SpawnPos = AddPlate(game.Workspace.Lobby.Spawns.Spawn.Position, Workspace)
 
 	local Toggle = MM2Tab:CreateToggle({
@@ -333,50 +345,30 @@ if game.PlaceId == 142823291 then
 				while ESP do
 					wait(1)
 					if ESP then
-						Map = game.Workspace:FindFirstChild("Barn") or game.Workspace:FindFirstChild("VampireCastle") or game.Workspace:FindFirstChild("Office3") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("Mineshaft") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Mansion2") or game.Workspace:FindFirstChild("Hotel") or game.Workspace:FindFirstChild("BioLab") or game.Workspace:FindFirstChild("House2") or game.Workspace:FindFirstChild("Factory") or game.Workspace:FindFirstChild("MilBase") or game.Workspace:FindFirstChild("ResearchFacility") or game.Workspace:FindFirstChild("Bank2") or game.Workspace:FindFirstChild("Hospital3") or game.Workspace:FindFirstChild("PoliceStation") or game.Workspace:FindFirstChild("Workplace") or game.Workspace:FindFirstChild("Farmhouse")
+						Map = FindMap()
 						for i,v in pairs(game.Players:GetChildren()) do
 							if not workspace:FindFirstChild(v.Name) then continue end
+							
+							local parent = nil
+							local color = nil
 
 							if v.Backpack:FindFirstChild("Knife") then
-								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
+								game.Workspace[v.Name]
 							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
-								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
+								game.Workspace[v.Name]
 							end
 							if v.Backpack:FindFirstChild("Gun") then
-								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
+								color = Color3.fromRGB(35, 185, 255)
 							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Gun") then
-								if not game.Workspace[tostring(v.Name)]:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace[tostring(v.Name)]
-									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
+								color = Color3.fromRGB(35, 185, 255)
 							end
 							if Map and Map:FindFirstChild("GunDrop") then
-								if not Map.GunDrop:FindFirstChild("LOL") then
-									local AddHigh = Instance.new("Highlight")
-									AddHigh.Parent = game.Workspace.GunDrop
-									AddHigh.FillColor = Color3.fromRGB(35, 185, 255)
-									AddHigh.DepthMode = "AlwaysOnTop"
-									AddHigh.Name = "LOL"
-								end
+								parent = game.Workspace.GunDrop
+								color = Color3.fromRGB(35, 185, 255)
+							end
+
+							if parent then
+								AddHighlight(color, parent)
 							end
 						end
 					end
