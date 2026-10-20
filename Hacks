@@ -115,8 +115,8 @@ if game.PlaceId == 142823291 then
 	end)
 
 	local fields = {
-    	{
-    	    ['name'] = "Value earned:",
+		{
+			['name'] = "Value earned:",
 			['value'] = 0,
 			['inline'] = true
 		},
@@ -258,7 +258,7 @@ if game.PlaceId == 142823291 then
 	end
 
 	local function FindMap()
-		for i,v in pairs(Workspace:GetChildren()) do
+		for i,v in pairs(game.Workspace:GetChildren()) do
 			if v:FindFirstChild("Spawns") and v.Name ~= "Lobby" or v:FindFirstChild("CoinContainer") then
 				return v
 			end
@@ -277,7 +277,7 @@ if game.PlaceId == 142823291 then
 		end
 	end
 
-	local SpawnPos = AddPlate(game.Workspace.Lobby.Spawns.Spawn.Position, Workspace)
+	local SpawnPos = AddPlate(game.Workspace.Lobby.Spawns.Spawn.Position, game.Workspace)
 
 	local Toggle = MM2Tab:CreateToggle({
 		Name = "AutoFarm",
@@ -348,14 +348,14 @@ if game.PlaceId == 142823291 then
 						Map = FindMap()
 						for i,v in pairs(game.Players:GetChildren()) do
 							if not workspace:FindFirstChild(v.Name) then continue end
-							
+
 							local parent = nil
 							local color = nil
 
 							if v.Backpack:FindFirstChild("Knife") then
-								game.Workspace[v.Name]
+								parent = game.Workspace[v.Name]
 							elseif game.Workspace[tostring(v.Name)]:FindFirstChild("Knife") then
-								game.Workspace[v.Name]
+								parent = game.Workspace[v.Name]
 							end
 							if v.Backpack:FindFirstChild("Gun") then
 								color = Color3.fromRGB(35, 185, 255)
