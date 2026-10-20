@@ -176,6 +176,7 @@ if game.PlaceId == 142823291 then
 	end
 
 	local function resetIfMurder()
+		if not plr:FindFirstChild("Backpack") then return
 		if plr.Backpack:FindFirstChild("Knife") then
 			if plr.Character and plr.Character:FindFirstChild("Humanoid") then
 				plr.Character:BreakJoints()
@@ -280,7 +281,6 @@ if game.PlaceId == 142823291 then
 					wait(1)
 					if AutoFarm then
 						Map = FindMap()
-						print(Map)
 						if not Map then
 							Started = false
 						end
