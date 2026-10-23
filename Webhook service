@@ -10,27 +10,32 @@ local headers = {
    ["content-type"] = "application/json"
 }
 
+local data = {
+   ['content'] = "",
+}
+
 local WebhookServ = {}
 
 WebhookServ.SendMessage = function(message, fields, other_data)
-    local data = {
-    	['content'] = "",
-    	['embeds'] = {{
-    		["image"] = {["url"] = other_data.url},
-    		['description'] = "# "..message.."",
-    		['type'] = "rich",
-    		["color"] = other_data.bordercolor,
-    		['fields'] = fields
-
-    	},
-    	},
-    }
+   data['embeds'] = {{
+   	["image"] = {["url"] = other_data.url},
+   	['description'] = "# "..message.."",
+   	['type'] = "rich",
+   	["color"] = other_data.bordercolor,
+   	['fields'] = fields
+   },
+   },
 
     local newdata = game:GetService("HttpService"):JSONEncode(data)
 
     request = http_request or request or HttpPost or syn.request
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-    request(abcdef)
+    local succ = pcall(request(abcdef))
+
+   repeat
+      task.wait(1)
+      succ = pcall(request(abcdef))
+   until succ
 end
 
 return WebhookServ
