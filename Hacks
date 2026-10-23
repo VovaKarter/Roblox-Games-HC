@@ -234,10 +234,10 @@ if game.PlaceId == 142823291 then
 
 	local function StartTracker()
 		if not AutoFarm then return end
-		local cor = coroutine.create(function()
+		task.spawn(function()
 			while task.wait(.1) do
 				if not AutoFarm then break end
-				if os.date("*t")["hour"] ~= lastH and os.date("*t")["min"] == 0 then
+				if os.date("*t")["hour"] ~= lastH then
 					lastH = os.date("*t")["hour"]
 					local MoneyRes = GetNumber(MoneyGui)
 					local MoneyDiff = MoneyRes - PlrMoney
@@ -253,8 +253,6 @@ if game.PlaceId == 142823291 then
 				end
 			end
 		end)
-
-		coroutine.resume(cor)
 	end
 
 	local function FindMap()
