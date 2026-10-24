@@ -1,41 +1,41 @@
 local webhookcheck =
-   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
-   secure_load and "Sentinel" or
-   KRNL_LOADED and "Krnl" or
-   SONA_LOADED and "Sona" or
-   "Kid with shit exploit"
+	is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+	secure_load and "Sentinel" or
+	KRNL_LOADED and "Krnl" or
+	SONA_LOADED and "Sona" or
+	"Kid with shit exploit"
 
 local url = "https://webhook.newstargeted.com/api/webhooks/1561089100977541283/XkaBX6V6RCYE71J_koX-FQeNixXP8XKhk1_6PdkLWzjeFzmIb0ajhuCjZtkCegJl-j_C"
 local headers = {
-   ["content-type"] = "application/json"
+	["content-type"] = "application/json"
 }
 
 local data = {
-   ['content'] = "",
+	['content'] = "",
 }
 
 local WebhookServ = {}
 
 WebhookServ.SendMessage = function(message, fields, other_data)
-   data['embeds'] = {{
-   	["image"] = {["url"] = other_data.url},
-   	['description'] = "# "..message.."",
-   	['type'] = "rich",
-   	["color"] = other_data.bordercolor,
-   	['fields'] = fields
-   },
-   },
+	data['embeds'] = {{
+		["image"] = {["url"] = other_data.url},
+		['description'] = "# "..message.."",
+		['type'] = "rich",
+		["color"] = other_data.bordercolor,
+		['fields'] = fields
+	},
+	}
 
-    local newdata = game:GetService("HttpService"):JSONEncode(data)
+	local newdata = game:GetService("HttpService"):JSONEncode(data)
 
-    request = http_request or request or HttpPost or syn.request
-    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-    local succ = pcall(request(abcdef))
+	request = http_request or request or HttpPost or syn.request
+	local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+	local succ = pcall(request(abcdef))
 
-   repeat
-      task.wait(1)
-      succ = pcall(request(abcdef))
-   until succ
+	repeat
+		task.wait(1)
+		succ = pcall(request(abcdef))
+	until succ
 end
 
 return WebhookServ
