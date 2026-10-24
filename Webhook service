@@ -30,7 +30,14 @@ WebhookServ.SendMessage = function(message, fields, other_data)
 
 	request = http_request or request or HttpPost or syn.request
 	local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-	request(abcdef)
+	local f = request(abcdef)
+	local succ = f.Body:split('"success":')[2]:split("}")[1]
+
+	repeat
+		task.wait(1)
+		f = request(abcdef)
+		succ = f.Body:split('"success":')[2]:split("}")[1]
+	until succ == "true"
 end
 
 return WebhookServ
