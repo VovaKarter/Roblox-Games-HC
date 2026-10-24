@@ -30,12 +30,7 @@ WebhookServ.SendMessage = function(message, fields, other_data)
 
 	request = http_request or request or HttpPost or syn.request
 	local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-	local succ = pcall(request(abcdef))
-
-	repeat
-		task.wait(1)
-		succ = pcall(request(abcdef))
-	until succ
+	request(abcdef)
 end
 
 return WebhookServ
